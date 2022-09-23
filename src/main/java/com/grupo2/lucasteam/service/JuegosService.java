@@ -1,5 +1,7 @@
 package com.grupo2.lucasteam.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +37,29 @@ public class JuegosService implements JuegosServiceI {
 		juegosDAO.save(juego);
 	}
 
+	/**
+	 * Método importarCSV() - permite traer un archivo CSV
+	 * para poder trabajar con él
+	 * 
+	 * @param juego
+	 * @author Grupo 2 -
+	 * @since 1.0
+	 */
 	@Override
 	public void importarCSV() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	
+	/**
+	 * Método save() - permite guardar objetos de tipo Juego
+	 *
+	 * @author Grupo 2 - Carlos Jesús Pérez Márquez
+	 * @since 1.0
+	 */
+	public List<Juego> findAll(){
+		return juegosDAO.findAll();
 	}
 
 }

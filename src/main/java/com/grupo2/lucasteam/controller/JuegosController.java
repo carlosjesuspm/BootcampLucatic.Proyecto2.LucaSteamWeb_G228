@@ -50,7 +50,7 @@ public class JuegosController {
 	
 	@GetMapping
 	public String listaJuegos(Model m) {
-//		m.addAttribute("listaJuegos", service.findAll());
+		m.addAttribute("listaJuegos", service.findAll());
 		return "listaJuegos";
 	}
 
