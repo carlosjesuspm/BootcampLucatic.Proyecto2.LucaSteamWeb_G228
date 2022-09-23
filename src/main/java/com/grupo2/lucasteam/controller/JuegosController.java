@@ -50,11 +50,6 @@ public class JuegosController {
 	@GetMapping
 	public String listaJuegos(Model m) {
 //		m.addAttribute("listaJuegos", service.findAll());
-		Genero g = new Genero(0, "Genero");
-		Editor e = new Editor(0, "Editor");
-		Plataforma p = new Plataforma(0, "Plataforma");
-		
-		
 		return "listaJuegos";
 	}
 }
