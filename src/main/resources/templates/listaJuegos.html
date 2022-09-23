@@ -38,9 +38,9 @@
             <td th:text="${status.index + 1}" />
             <td th:text="${juego.rango}" />
             <td th:text="${juego.nombre}" />
-            <td th:text="${juego.id_plataforma.nombre}" />
-            <td th:text="${juego.id_editor.nombre}"/>
-            <td th:text="${juego.id_genero.nombre}"/>
+            <td th:text="${juego.id_plataforma.plataforma}" />
+            <td th:text="${juego.id_editor.editor}"/>
+            <td th:text="${juego.id_genero.genero}"/>
             <td th:text="${juego.fecha}"/>
             <td><a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> | <a
               th:href="@{/eliminarJuego(id=${juego.id})}">Eliminar</a></td>
