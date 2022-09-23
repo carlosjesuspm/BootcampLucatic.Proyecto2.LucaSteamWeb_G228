@@ -8,10 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
 /**
- * Descripción de la clase:
+ * Descripción de la clase: ======= import com.grupo2.lucasteam.model.Editor;
+ * import com.grupo2.lucasteam.model.Genero; import
+ * com.grupo2.lucasteam.model.Plataforma; import
+ * com.grupo2.lucasteam.service.JuegosService;
+ * 
+ * /** Descripción de la clase: >>>>>>> developer
  * 
  * Clase JuegoController dedicada a recibir peticiones http relacionadas con la
  * clase Juego y devolver respuestas en base a ella.
@@ -43,6 +49,23 @@ public class JuegosController {
 		m.addAttribute("listaJuegos", service.findAll());
 
 		return "listaJuegos";
+//		m.addAttribute("listaJuegos", service.findAll());
+		return "listaJuegos";
+	}
+
+	/**
+	 * Método newJuego() - crea nuevos registros de tipo juego.
+	 * 
+	 * @param juego
+	 * @param m
+	 * @return {@code formularioAlta}
+	 * @author Grupo 2 - Tamara Alvarez
+	 * @since 1.0
+	 */
+	@GetMapping("/altaJuego")
+	public String newJuego(Juego juego, Model m) {
+		m.addAttribute("juego", juego);
+		return "formularioAlta";
 	}
 
 	public void importarCSV() {
