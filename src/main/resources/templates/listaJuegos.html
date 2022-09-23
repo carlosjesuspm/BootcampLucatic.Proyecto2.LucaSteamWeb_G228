@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
+    <title>Lista Juegos</title>
+  </head>
+  <body>
+
+    <nav class="nav">
+      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">Alta juego</a>
+    </nav>
+
+    <main>
+      <div class="b-primercontenedor">
+        <!-- <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
+          impedit labore rem, beatae mollitia aliquid laboriosam sequi
+          aspernatur officia dolorem fugiat corporis tempore possimus unde
+          sapiente repudiandae architecto ratione saepe. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Laudantium impedit labore rem,
+          beatae mollitia aliquid laboriosam sequi aspernatur officia dolorem
+          fugiat corporis tempore possimus unde sapiente repudiandae architecto
+          ratione saepe. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Laudantium impedit labore rem, beatae mollitia aliquid
+          laboriosam sequi aspernatur officia dolorem fugiat corporis tempore
+          possimus unde sapiente repudiandae architecto ratione saepe. Lorem
+          ipsum dolor sit amet, consectetur adipisicing elit. Laudantium impedit
+          labore rem, beatae mollitia aliquid laboriosam sequi aspernatur
+          officia dolorem fugiat corporis tempore possimus unde sapiente
+          repudiandae architecto ratione saepe.
+        </p> -->
+        <table class="table table-striped">
+          <tr>
+            <th>Nº</th>
+            <th>Rango</th>
+            <th>Nombre</th>
+            <th>Plataforma</th>
+            <th>Editor</th>
+            <th>Genero</th>
+            <th>Year</th>
+            <th>Acciones</th>
+          </tr>
+          <tr th:each="juego, status : ${userList}">
+            <td th:text="${status.index + 1}" />
+            <td th:text="${juego.rango}" />
+            <td th:text="${juego.nombre}" />
+            <td th:text="${juego.plataforma.nombre}" />
+            <td th:text="${juego.editor.nombre}"/>
+            <td th:text="${juego.genero.nombre}"/>
+            <td th:text="${juego.year}"/>
+            <td><a th:href="@{/edit(id=${user.id})}">Modificar</a> | <a
+              th:href="@{/delete(id=${user.id})}">Eliminar</a></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- <div class="b-segundocontenedor">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+      </div> -->
+    </main>
+  </body>
+</html>
