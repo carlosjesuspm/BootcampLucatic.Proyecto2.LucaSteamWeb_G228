@@ -25,7 +25,7 @@ import com.grupo2.lucasteam.service.JuegosService;
 * Clase JuegoController dedicada a recibir peticiones http relacionadas
 * con la clase Juego y devolver respuestas en base a ella. 
 *
-* @author Carlos Jesús Pérez márquez
+* @author Carlos Jesús Pérez Márquez
 * @version 1.0: 22/09/2022
 */
 
