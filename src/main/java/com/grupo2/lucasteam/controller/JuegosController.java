@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /** Descripción de la clase:
@@ -47,5 +46,19 @@ public class JuegosController {
 		m.addAttribute("listaJuegos", service.findAll());
 		
 		return"listaJuegos";
+	}
+
+	/**
+	* Método newJuego() - crea nuevos registros de tipo juego.
+	* @param juego
+	* @param m
+	* @return {@code formularioAlta} 
+	* @author Grupo 2 - Tamara Alvarez
+	* @since 1.0
+	*/
+	@GetMapping("/altaJuego")
+	public String newJuego(Juego juego, Model m) {
+		m.addAttribute("juego", juego);
+		return "formularioAlta";
 	}
 }
