@@ -8,7 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.grupo2.lucasteam.model.Editor;
+import com.grupo2.lucasteam.model.Genero;
+import com.grupo2.lucasteam.model.Juego;
+import com.grupo2.lucasteam.model.Plataforma;
+import com.grupo2.lucasteam.service.JuegosService;
 
 /** Descripción de la clase:
  * 
@@ -40,13 +48,42 @@ public class JuegosController {
 	
 	@GetMapping
 	public String listaJuegos(Model m) {
-		m.addAttribute("listaJuegos", service.findAll());
+//		m.addAttribute("listaJuegos", service.findAll());
+		return "listaJuegos";
+	}
+
+
+	/** Metodo modificarJuego() - permite modificar un juego de la lista Juegos
+	* @param Modificar juego
+	* @return /endpoint formularioJuego
+	* @author Lamia
+	* @version 1.0 23/09/22
+	*/
+	
+	@GetMapping("/modificarJuego")
+	public String modificarJuego(@RequestParam("id")int id, Model m) {
+		m.addAttribute("juego", service.findById(id));
+		return "formularioJuego";
+	}
+	
+	/** Metodo eliminarJuego() - permite eliminar un juego de la lista Juegos
+	* @param Eliminar juego
+	* @return /endpoint listaJuegos
+	* @author Lamia
+	* @version 1.0 23/09/22
+	*/
+	
+	@GetMapping("/eliminarJuego")
+	public String eliminarJuego(@RequestParam("id")int id) {
+		service.deleteById(id);
+		return "listaJuegos";
 		
-		return"listaJuegos";
 	}
 
 	/**
-	* Método newJuego() - crea nuevos registros de tipo juego.
+	* Método newJuego():
+	* Crea nuevos registros de tipo juego.
+	* 
 	* @param juego
 	* @param m
 	* @return {@code formularioAlta} 
@@ -58,4 +95,24 @@ public class JuegosController {
 		m.addAttribute("juego", juego);
 		return "formularioAlta";
 	}
+	
+	/**
+	* Método saveJuego():
+	* Guarda los registros creados en la interfaz gráfica.
+	* 
+	* @param juego
+	* @return {@code redirect:/listaJuegos} 
+	* @author Grupo 2 - Tamara Alvarez
+	* @since 1.0
+	*/
+	@PostMapping("/guardarjuego")
+	public String saveJuego(Juego juego){
+		service.save(juego);
+		return "redirect:/listaJuegos";
+	}
+	
+	
+	
+	
+	
 }
