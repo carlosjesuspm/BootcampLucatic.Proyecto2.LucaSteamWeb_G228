@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Clase Plataforma que representa la entidad plataforma reflejada en la base de
@@ -26,6 +28,8 @@ import lombok.Data;
 @Entity
 @Table(name = "juegos")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Juego {
 
 	@Id

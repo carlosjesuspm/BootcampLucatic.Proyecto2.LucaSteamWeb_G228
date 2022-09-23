@@ -1,6 +1,10 @@
 package com.grupo2.lucasteam.controller;
 
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,12 +52,28 @@ public class JuegosController {
 	* @since 1.0
 	*/
 	
-	@GetMapping
+	@GetMapping("/")
 	public String listaJuegos(Model m) {
 //		m.addAttribute("listaJuegos", service.findAll());
+//		datos prueba
 		Genero g = new Genero(0, "Genero");
 		Editor e = new Editor(0, "Editor");
 		Plataforma p = new Plataforma(0, "Plataforma");
+		ArrayList<Juego> juegos = new ArrayList<>();
+		for (int i = 0; i < 50; i++) {
+			Juego j = new Juego();
+			j.setId(i);
+			j.setNombre("Juego " + i);
+			j.setRango(i);
+			j.setId_plataforma(p);
+			j.setId_editor(e);
+			j.setId_genero(g);
+			j.setFecha(Year.now());
+			juegos.add(j);
+		}
+		m.addAttribute("listaJuegos", juegos);
+//		datos prueba
+		
 		return "listaJuegos";
 	}
 
@@ -81,7 +101,7 @@ public class JuegosController {
 	@GetMapping("/eliminarJuego")
 	public String eliminarJuego(@RequestParam("id")int id) {
 //		service.deleteById(id);
-		return "listaJuegos";
+		return ("redirect:/");
 		
 	}
 

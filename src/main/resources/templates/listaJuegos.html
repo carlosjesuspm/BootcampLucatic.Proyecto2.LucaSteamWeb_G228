@@ -17,7 +17,7 @@
 
     <nav class="nav">
       <a class="nav-link active" href="#">Home</a>
-      <a class="nav-link" href="#">Alta juego</a>
+      <a class="nav-link" href="/altaJuego">Alta juego</a>
     </nav>
 
     <main>
@@ -33,16 +33,16 @@
             <th>Year</th>
             <th>Acciones</th>
           </tr>
-          <tr th:each="juego, status : ${userList}">
+          <tr th:each="juego, status : ${listaJuegos}">
             <td th:text="${status.index + 1}" />
             <td th:text="${juego.rango}" />
             <td th:text="${juego.nombre}" />
-            <td th:text="${juego.plataforma.nombre}" />
-            <td th:text="${juego.editor.nombre}"/>
-            <td th:text="${juego.genero.nombre}"/>
-            <td th:text="${juego.year}"/>
-            <td><a th:href="@{/edit(id=${user.id})}">Modificar</a> | <a
-              th:href="@{/delete(id=${user.id})}">Eliminar</a></td>
+            <td th:text="${juego.id_plataforma.nombre}" />
+            <td th:text="${juego.id_editor.nombre}"/>
+            <td th:text="${juego.id_genero.nombre}"/>
+            <td th:text="${juego.fecha}"/>
+            <td><a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> | <a
+              th:href="@{/eliminarJuego(id=${juego.id})}">Eliminar</a></td>
           </tr>
         </table>
       </div>
