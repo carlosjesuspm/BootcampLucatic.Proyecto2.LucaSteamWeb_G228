@@ -118,4 +118,16 @@ public class JuegosController {
 		m.addAttribute("juego", juego);
 		return "formularioAlta";
 	}
+	
+	/**
+	 * Metodo de cargar la lista de juegos desde el csv
+	 * @param m
+	 * @author Grupo 2 - Alonso Gomez
+	 * @since 1.0
+	 */
+	@GetMapping("/cargarCsv")
+	public String loadFile(Model m) {
+		service.importarCSV();
+		return ("redirect:/");
+	}
 }
