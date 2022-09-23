@@ -6,7 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Clase Editor que representa la entidad editor reflejada en la base de datos.
@@ -19,6 +21,8 @@ import lombok.Data;
 @Entity
 @Table(name = "editor")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Editor {
 
 	@Id

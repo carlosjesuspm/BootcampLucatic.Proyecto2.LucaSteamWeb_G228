@@ -10,6 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.grupo2.lucasteam.model.Editor;
+import com.grupo2.lucasteam.model.Genero;
+import com.grupo2.lucasteam.model.Plataforma;
+import com.grupo2.lucasteam.service.JuegosService;
+
 /** Descripción de la clase:
  * 
 * Clase JuegoController dedicada a recibir peticiones http relacionadas
@@ -40,8 +45,12 @@ public class JuegosController {
 	
 	@GetMapping
 	public String listaJuegos(Model m) {
-		m.addAttribute("listaJuegos", service.findAll());
+//		m.addAttribute("listaJuegos", service.findAll());
+		Genero g = new Genero(0, "Genero");
+		Editor e = new Editor(0, "Editor");
+		Plataforma p = new Plataforma(0, "Plataforma");
 		
-		return"listaJuegos";
+		
+		return "listaJuegos";
 	}
 }
