@@ -34,6 +34,18 @@ public class JuegosController {
 
 	}
 	
+	/** Metodo modificarJuego() - permite modificar un juego de la lista Juegos
+	* @param Modificar juego
+	* @return /endpoint formularioJuego
+	* @author Lamia
+	* @version 1.0 23/09/22
+	*/
+	
+	@GetMapping("/modificarJuego")
+	public String modificarJuego(@RequestParam("id")int id, Model m) {
+		m.addAttribute("juego", servce.findById(id));
+		return "formularioJuego";
+	}
 	
 	/** Metodo eliminarJuego() - permite eliminar un juego de la lista Juegos
 	* @param Eliminar juego
@@ -45,7 +57,7 @@ public class JuegosController {
 	@GetMapping("/eliminarJuego")
 	public String eliminarJuego(@RequestParam("id")int id) {
 		service.deleteById(id);
-		return ("redirect:/listaJuegos");
+		return "listaJuegos";
 		
 	}
 
