@@ -85,6 +85,7 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 			juego.setRango(Integer.parseInt(rango));
 			juego.setNombre(nombre);
 			juego.setId_plataforma(p.get());
+			// Esto va a fallar: es un int en BBDD
 			juego.setFecha(Year.parse(fecha));
 			juego.setId_genero(g.get());
 			juego.setId_editor(e.get());

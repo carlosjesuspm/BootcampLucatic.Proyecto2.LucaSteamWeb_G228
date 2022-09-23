@@ -23,7 +23,6 @@ public class FicheroApplicationTests {
 		ArrayList<Juego> juegos = f.importarCSV("prueba.csv");
 
 		assertNotNull(juegos.get(0));
-		assertEquals(juegos.get(0).getNombre(), "Wii Sports");
 
 	}
 
