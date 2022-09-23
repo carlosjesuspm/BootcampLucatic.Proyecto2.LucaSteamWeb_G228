@@ -56,23 +56,23 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 			String NA_ventas, String EU_ventas, String JP_ventas, String otras_ventas, String ventas_globales) {
 
 		// Editor
-		Optional<Editor> e = editoresDAO.findByNombre(editor);
+		Optional<Editor> e = editoresDAO.findByEditor(editor);
 		if (!e.isPresent()) {
-			e.get().setNombre(editor);
+			e.get().setEditor(editor);
 			editoresDAO.save(e.get());
 		}
 
 		// Plataforma
-		Optional<Plataforma> p = plataformasDAO.findByNombre(plataforma);
+		Optional<Plataforma> p = plataformasDAO.findByPlataforma(plataforma);
 		if (!p.isPresent()) {
-			p.get().setNombre(plataforma);
+			p.get().setPlataforma(plataforma);
 			plataformasDAO.save(p.get());
 		}
 
 		// Genero
-		Optional<Genero> g = generosDAO.findByNombre(genero);
+		Optional<Genero> g = generosDAO.findByGenero(genero);
 		if (!g.isPresent()) {
-			g.get().setNombre(genero);
+			g.get().setGenero(genero);
 			generosDAO.save(g.get());
 		}
 

@@ -65,7 +65,16 @@ public class JuegosController {
 //		return "formularioAlta";
 //	}
 //
+
+	/**
+	 * Método inmportarCSV que llama método importarCSV de la capa de Servicios.
+	 * 
+	 * @author Álvaro Román Gómez
+	 * @since 1.0
+	 */
+
 	public void importarCSV() {
+		log.info("Importando CSV en Controller.");
 		service.importarCSV();
 	}
 
