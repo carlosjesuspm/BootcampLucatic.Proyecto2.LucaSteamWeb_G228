@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.lucasteam.model.Editor;
 import com.grupo2.lucasteam.model.Genero;
@@ -51,6 +52,34 @@ public class JuegosController {
 	public String listaJuegos(Model m) {
 //		m.addAttribute("listaJuegos", service.findAll());
 		return "listaJuegos";
+	}
+
+
+	/** Metodo modificarJuego() - permite modificar un juego de la lista Juegos
+	* @param Modificar juego
+	* @return /endpoint formularioJuego
+	* @author Lamia
+	* @version 1.0 23/09/22
+	*/
+	
+	@GetMapping("/modificarJuego")
+	public String modificarJuego(@RequestParam("id")int id, Model m) {
+		m.addAttribute("juego", service.findById(id));
+		return "formularioJuego";
+	}
+	
+	/** Metodo eliminarJuego() - permite eliminar un juego de la lista Juegos
+	* @param Eliminar juego
+	* @return /endpoint listaJuegos
+	* @author Lamia
+	* @version 1.0 23/09/22
+	*/
+	
+	@GetMapping("/eliminarJuego")
+	public String eliminarJuego(@RequestParam("id")int id) {
+		service.deleteById(id);
+		return "listaJuegos";
+		
 	}
 
 	/**
