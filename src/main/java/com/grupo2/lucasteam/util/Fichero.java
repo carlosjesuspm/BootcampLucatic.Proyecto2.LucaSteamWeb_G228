@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +31,7 @@ public class Fichero implements FicheroI {
 
 	@Autowired
 	FactoriaJuegosI factoria;
+	public static boolean CSVcargado = false;
 
 	/**
 	 * Método importarCSV que nos permite leer un fichero CSV y conseguir una lista
@@ -43,7 +44,7 @@ public class Fichero implements FicheroI {
 	 */
 
 	@Override
-	public ArrayList<Juego> importarCSV(String rutaArchivo) {
+	public TreeSet<Juego> importarCSV(String rutaArchivo) {
 		// TODO Auto-generated method stub
 		// Comprobamos que el archivo existe
 		File file = new File(rutaArchivo);
@@ -51,7 +52,7 @@ public class Fichero implements FicheroI {
 			log.warn("El archivo " + rutaArchivo + " no existe.");
 		}
 
-		ArrayList<Juego> juegos = new ArrayList<>();
+		TreeSet<Juego> juegos = new TreeSet<>();
 
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 

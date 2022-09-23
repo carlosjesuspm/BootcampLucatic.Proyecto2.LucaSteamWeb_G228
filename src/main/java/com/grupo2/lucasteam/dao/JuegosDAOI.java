@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.dao;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +12,7 @@ import com.grupo2.lucasteam.model.Juego;
 public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 
 	Optional<Juego> findByNombre(String nombre);
+
+	ArrayList<Juego> findAllByNombre(String nombre);
 
 }

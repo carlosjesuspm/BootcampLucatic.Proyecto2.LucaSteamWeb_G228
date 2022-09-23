@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import com.grupo2.lucasteam.dao.EditoresDAOI;
 import com.grupo2.lucasteam.dao.GenerosDAOI;
 import com.grupo2.lucasteam.dao.PlataformasDAOI;
+import com.grupo2.lucasteam.exceptions.NaException;
+import com.grupo2.lucasteam.util.ValidacionesI;
 
 /**
  * Clase FactoriaJuegos que se encarga de la instanciación de objetos de la
@@ -33,6 +35,8 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 	PlataformasDAOI plataformasDAO;
 	@Autowired
 	GenerosDAOI generosDAO;
+	@Autowired
+	ValidacionesI validar;
 
 	/**
 	 * Método crearJuego que nos permite crear un objeto Juego a partir de ciertos
@@ -100,29 +104,67 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 		try {
 
 			// Set atributos de juego
+			// RANGO
 			try {
 				juego.setRango(Integer.parseInt(rango));
 			} catch (NumberFormatException nfe) {
 				log.warn("Error al convertir String a Integer o Double: " + nfe.getMessage());
 			}
-			juego.setNombre(nombre);
-			juego.setId_plataforma(plat);
-			// Esto va a fallar: es un int en BBDD
-			juego.setFecha(Year.parse(fecha).getValue());
-			juego.setId_genero(gen);
-			juego.setId_editor(edit);
-			juego.setNA_ventas(Double.parseDouble(NA_ventas));
-			juego.setEU_ventas(Double.parseDouble(EU_ventas));
-			juego.setJP_ventas(Double.parseDouble(JP_ventas));
-			juego.setOtras_ventas(Double.parseDouble(otras_ventas));
-			juego.setVentas_globales(Double.parseDouble(ventas_globales));
+			// NOMBRE - NOT NULL
+			try {
+				juego.setNombre(nombre);
+			} catch (NullPointerException npe) {
+				// TODO: handle exception
+				log.warn("Nombre vacío: " + npe.getMessage());
+			}
+			// PLATAFORMA - NOT NULL
+			try {
+				juego.setId_plataforma(plat);
+			} catch (NullPointerException npe) {
+				// TODO: handle exception
+				log.warn("Plataforma vacía: " + npe.getMessage());
+			}
+			// FECHA - NA
+			try {
+				validar.isNA(fecha);
+				juego.setFecha(Year.parse(fecha).getValue());
+			} catch (NaException nae) {
+				// TODO: handle exception
+				log.info("Esta fecha es nula: " + nae.getMessage());
+			} catch (DateTimeException dte) {
+				// TODO: handle exception
+				log.warn("Error al convertir String a Year: " + dte.getMessage());
+			}
+			// GENERO - NOT NULL
+			try {
+				juego.setId_genero(gen);
+			} catch (NullPointerException npe) {
+				// TODO: handle exception
+				log.warn("Genero vacío: " + npe.getMessage());
+			}
+
+			// EDITOR - NOT NULL
+			try {
+				juego.setId_editor(edit);
+			} catch (NullPointerException npe) {
+				// TODO: handle exception
+				log.warn("Genero vacío: " + npe.getMessage());
+			}
+
+			try {
+				juego.setNA_ventas(Double.parseDouble(NA_ventas));
+				juego.setEU_ventas(Double.parseDouble(EU_ventas));
+				juego.setJP_ventas(Double.parseDouble(JP_ventas));
+				juego.setOtras_ventas(Double.parseDouble(otras_ventas));
+				juego.setVentas_globales(Double.parseDouble(ventas_globales));
+			} catch (NumberFormatException nfe) {
+				// TODO: handle exception
+				log.warn("Error al convertir String a Integer o Double: " + nfe.getMessage());
+			}
 
 		} catch (NumberFormatException nfe) {
 			// TODO: handle exception
 			log.warn("Error al convertir String a Integer o Double: " + nfe.getMessage());
-		} catch (DateTimeException dte) {
-			// TODO: handle exception
-			log.warn("Error al convertir String a Year: " + dte.getMessage());
 		} catch (NullPointerException npe) {
 			// TODO: handle exception
 			log.warn("String vacía: " + npe.getMessage());
@@ -135,7 +177,8 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 		return new JuegoFormulario(String.valueOf(j.getId()), String.valueOf(j.getRango()), j.getNombre(),
 				j.getId_plataforma().getPlataforma(), String.valueOf(j.getFecha()), j.getId_genero().getGenero(),
 				j.getId_editor().getEditor(), String.valueOf(j.getNA_ventas()), String.valueOf(j.getEU_ventas()),
-				String.valueOf(j.getJP_ventas()), String.valueOf(j.getOtras_ventas()), String.valueOf(j.getVentas_globales()));
+				String.valueOf(j.getJP_ventas()), String.valueOf(j.getOtras_ventas()),
+				String.valueOf(j.getVentas_globales()));
 	}
 
 }

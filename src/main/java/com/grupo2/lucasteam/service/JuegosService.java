@@ -1,12 +1,11 @@
 package com.grupo2.lucasteam.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,7 @@ import com.grupo2.lucasteam.model.FactoriaJuegos;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.util.FicheroI;
+import com.grupo2.lucasteam.util.ValidacionesI;
 
 /**
  * Clase JuegosService - contiene los métodos para conectar las peticiones de la
@@ -34,6 +34,9 @@ public class JuegosService implements JuegosServiceI {
 	FactoriaJuegosI factoria;
 	@Autowired
 	FicheroI fichero;
+	@Autowired
+	ValidacionesI validar;
+	public static boolean CSVcargado = false;
 
 	/**
 	 * Método save() - permite guardar objetos de tipo Juego
@@ -44,18 +47,21 @@ public class JuegosService implements JuegosServiceI {
 	 */
 	@Override
 	public void altaJuego(Juego juego) {
-		System.out.println("holla");
-		System.out.println(juego.toString());
-		juegosDAO.save(juego);
+
+		if (!validar.existeJuego(juego)) {
+			juegosDAO.save(juego);
+		} else {
+			log.info("El juego " + juego.getNombre() + " ya está en la BBDD.");
+		}
+
 	}
 
 	/**
 	 * Método importarCSV que utiliza la lista de juegos devuelta por leerCSV y va
 	 * guardando cada juego en la base de datos. *
 	 * 
-	 * @author Álvaro Román Gómez
-	 * Método importarCSV() - permite traer un archivo CSV
-	 * para poder trabajar con él
+	 * @author Álvaro Román Gómez Método importarCSV() - permite traer un archivo
+	 *         CSV para poder trabajar con él
 	 * 
 	 * @param juego
 	 * @author Grupo 2 -
@@ -63,34 +69,36 @@ public class JuegosService implements JuegosServiceI {
 	 */
 	@Override
 	public void importarCSV() {
-		// TODO Auto-generated method stub
-		System.out.println("--------------------Hola estoy aqui------------------");
-		ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
-		log.info("Importando lista de juegos en BBDD...");
-		for (Juego juego : juegos) {
-			Optional<Juego> j = juegosDAO.findByNombre(juego.getNombre());
-			if (!j.isPresent() || !j.get().equals(juego)) {
-				juegosDAO.save(juego);
+
+		while (!CSVcargado) {
+			// TODO Auto-generated method stub
+			TreeSet<Juego> juegos = fichero.importarCSV("vgsales.csv");
+			log.info("Importando lista de juegos en BBDD...");
+			for (Juego juego : juegos) {
+				if (!validar.existeJuego(juego)) {
+					juegosDAO.save(juego);
+				}
+
 			}
+			CSVcargado = true;
 		}
 
 	}
-	
-	
+
 	/**
 	 * Método save() - permite guardar objetos de tipo Juego
 	 *
 	 * @author Grupo 2 - Carlos Jesús Pérez Márquez
 	 * @since 1.0
 	 */
-	public List<Juego> findAll(){
+	public List<Juego> findAll() {
 		return juegosDAO.findAll();
 	}
 
 	@Override
 	public void deleteById(int id) {
 		juegosDAO.deleteById(id);
-		
+
 	}
 
 	@Override
