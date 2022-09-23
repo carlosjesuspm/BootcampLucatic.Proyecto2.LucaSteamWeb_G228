@@ -17,28 +17,11 @@
 
     <nav class="nav">
       <a class="nav-link active" href="#">Home</a>
-      <a class="nav-link" href="#">Alta juego</a>
+      <a class="nav-link" href="/altaJuego">Alta juego</a>
     </nav>
 
     <main>
       <div class="b-primercontenedor">
-        <!-- <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-          impedit labore rem, beatae mollitia aliquid laboriosam sequi
-          aspernatur officia dolorem fugiat corporis tempore possimus unde
-          sapiente repudiandae architecto ratione saepe. Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Laudantium impedit labore rem,
-          beatae mollitia aliquid laboriosam sequi aspernatur officia dolorem
-          fugiat corporis tempore possimus unde sapiente repudiandae architecto
-          ratione saepe. Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Laudantium impedit labore rem, beatae mollitia aliquid
-          laboriosam sequi aspernatur officia dolorem fugiat corporis tempore
-          possimus unde sapiente repudiandae architecto ratione saepe. Lorem
-          ipsum dolor sit amet, consectetur adipisicing elit. Laudantium impedit
-          labore rem, beatae mollitia aliquid laboriosam sequi aspernatur
-          officia dolorem fugiat corporis tempore possimus unde sapiente
-          repudiandae architecto ratione saepe.
-        </p> -->
         <table class="table table-striped">
           <tr>
             <th>Nº</th>
@@ -50,27 +33,19 @@
             <th>Year</th>
             <th>Acciones</th>
           </tr>
-          <tr th:each="juego, status : ${userList}">
+          <tr th:each="juego, status : ${listaJuegos}">
             <td th:text="${status.index + 1}" />
             <td th:text="${juego.rango}" />
             <td th:text="${juego.nombre}" />
-            <td th:text="${juego.plataforma.nombre}" />
-            <td th:text="${juego.editor.nombre}"/>
-            <td th:text="${juego.genero.nombre}"/>
-            <td th:text="${juego.year}"/>
-            <td><a th:href="@{/edit(id=${user.id})}">Modificar</a> | <a
-              th:href="@{/delete(id=${user.id})}">Eliminar</a></td>
+            <td th:text="${juego.id_plataforma.nombre}" />
+            <td th:text="${juego.id_editor.nombre}"/>
+            <td th:text="${juego.id_genero.nombre}"/>
+            <td th:text="${juego.fecha}"/>
+            <td><a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> | <a
+              th:href="@{/eliminarJuego(id=${juego.id})}">Eliminar</a></td>
           </tr>
         </table>
       </div>
-
-      <!-- <div class="b-segundocontenedor">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-        </ul>
-      </div> -->
     </main>
   </body>
 </html>
