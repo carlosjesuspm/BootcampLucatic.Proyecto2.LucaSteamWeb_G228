@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -83,7 +84,9 @@ public class JuegosController {
 	}
 
 	/**
-	* Método newJuego() - crea nuevos registros de tipo juego.
+	* Método newJuego():
+	* Crea nuevos registros de tipo juego.
+	* 
 	* @param juego
 	* @param m
 	* @return {@code formularioAlta} 
@@ -95,4 +98,24 @@ public class JuegosController {
 		m.addAttribute("juego", juego);
 		return "formularioAlta";
 	}
+	
+	/**
+	* Método saveJuego():
+	* Guarda los registros creados en la interfaz gráfica.
+	* 
+	* @param juego
+	* @return {@code redirect:/listaJuegos} 
+	* @author Grupo 2 - Tamara Alvarez
+	* @since 1.0
+	*/
+	@PostMapping("/guardarjuego")
+	public String saveJuego(Juego juego){
+		service.save(juego);
+		return "redirect:/listaJuegos";
+	}
+	
+	
+	
+	
+	
 }
