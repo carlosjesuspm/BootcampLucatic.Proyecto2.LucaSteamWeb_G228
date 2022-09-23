@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,9 @@ public class JuegosService implements JuegosServiceI {
 
 	@Autowired
 	JuegosDAOI juegosDAO;
+	@Autowired
 	FactoriaJuegosI factoria;
+	@Autowired
 	FicheroI fichero;
 
 	/**
@@ -40,7 +43,9 @@ public class JuegosService implements JuegosServiceI {
 	 * @since 1.0
 	 */
 	@Override
-	public void AltaJuego(Juego juego) {
+	public void altaJuego(Juego juego) {
+		System.out.println("holla");
+		System.out.println(juego.toString());
 		juegosDAO.save(juego);
 	}
 
@@ -59,12 +64,14 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public void importarCSV() {
 		// TODO Auto-generated method stub
+		System.out.println("--------------------Hola estoy aqui------------------");
 		ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
 		log.info("Importando lista de juegos en BBDD...");
 		for (Juego juego : juegos) {
-
-			juegosDAO.save(juego);
-
+			Optional<Juego> j = juegosDAO.findByNombre(juego.getNombre());
+			if (!j.isPresent() || !j.get().equals(juego)) {
+				juegosDAO.save(juego);
+			}
 		}
 
 	}
@@ -78,6 +85,17 @@ public class JuegosService implements JuegosServiceI {
 	 */
 	public List<Juego> findAll(){
 		return juegosDAO.findAll();
+	}
+
+	@Override
+	public void deleteById(int id) {
+		juegosDAO.deleteById(id);
+		
+	}
+
+	@Override
+	public Optional<Juego> findById(int id) {
+		return juegosDAO.findById(id);
 	}
 
 }

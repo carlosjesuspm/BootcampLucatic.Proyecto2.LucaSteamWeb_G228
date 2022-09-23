@@ -29,7 +29,9 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 
 	@Autowired
 	EditoresDAOI editoresDAO;
+	@Autowired
 	PlataformasDAOI plataformasDAO;
+	@Autowired
 	GenerosDAOI generosDAO;
 
 	/**
@@ -57,23 +59,39 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 
 		// Editor
 		Optional<Editor> e = editoresDAO.findByEditor(editor);
+		Editor edit;
+		Plataforma plat;
+		Genero gen;
 		if (!e.isPresent()) {
-			e.get().setEditor(editor);
-			editoresDAO.save(e.get());
+//			e.get().setEditor(editor);
+			edit = new Editor();
+			edit.setEditor(editor);
+			edit = editoresDAO.save(edit);
+
+		} else {
+			edit = e.get();
 		}
 
 		// Plataforma
 		Optional<Plataforma> p = plataformasDAO.findByPlataforma(plataforma);
 		if (!p.isPresent()) {
-			p.get().setPlataforma(plataforma);
-			plataformasDAO.save(p.get());
+//			p.get().setPlataforma(plataforma);
+			plat = new Plataforma();
+			plat.setPlataforma(plataforma);
+			plat = plataformasDAO.save(plat);
+		} else {
+			plat = p.get();
 		}
 
 		// Genero
 		Optional<Genero> g = generosDAO.findByGenero(genero);
 		if (!g.isPresent()) {
-			g.get().setGenero(genero);
-			generosDAO.save(g.get());
+//			g.get().setGenero(genero);
+			gen = new Genero();
+			gen.setGenero(genero);
+			gen = generosDAO.save(gen);
+		} else {
+			gen = g.get();
 		}
 
 		// Crear objeto juego
@@ -82,13 +100,17 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 		try {
 
 			// Set atributos de juego
-			juego.setRango(Integer.parseInt(rango));
+			try {
+				juego.setRango(Integer.parseInt(rango));
+			} catch (NumberFormatException nfe) {
+				log.warn("Error al convertir String a Integer o Double: " + nfe.getMessage());
+			}
 			juego.setNombre(nombre);
-			juego.setId_plataforma(p.get());
+			juego.setId_plataforma(plat);
 			// Esto va a fallar: es un int en BBDD
-			juego.setFecha(Year.parse(fecha));
-			juego.setId_genero(g.get());
-			juego.setId_editor(e.get());
+			juego.setFecha(Year.parse(fecha).getValue());
+			juego.setId_genero(gen);
+			juego.setId_editor(edit);
 			juego.setNA_ventas(Double.parseDouble(NA_ventas));
 			juego.setEU_ventas(Double.parseDouble(EU_ventas));
 			juego.setJP_ventas(Double.parseDouble(JP_ventas));
@@ -107,6 +129,13 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 		}
 		return juego;
 
+	}
+
+	public JuegoFormulario formGameFromGame(Juego j) {
+		return new JuegoFormulario(String.valueOf(j.getId()), String.valueOf(j.getRango()), j.getNombre(),
+				j.getId_plataforma().getPlataforma(), String.valueOf(j.getFecha()), j.getId_genero().getGenero(),
+				j.getId_editor().getEditor(), String.valueOf(j.getNA_ventas()), String.valueOf(j.getEU_ventas()),
+				String.valueOf(j.getJP_ventas()), String.valueOf(j.getOtras_ventas()), String.valueOf(j.getVentas_globales()));
 	}
 
 }
