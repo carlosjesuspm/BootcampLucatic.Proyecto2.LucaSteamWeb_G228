@@ -33,7 +33,7 @@ public class JuegosService implements JuegosServiceI {
 	 * @since 1.0
 	 */
 	@Override
-	public void save(Juego juego) {
+	public void AltaJuego(Juego juego) {
 		juegosDAO.save(juego);
 	}
 

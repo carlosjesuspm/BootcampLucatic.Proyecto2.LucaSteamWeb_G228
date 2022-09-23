@@ -6,7 +6,7 @@ import com.grupo2.lucasteam.model.Juego;
 
 public interface JuegosServiceI {
 
-	public void save(Juego juego);
+	public void AltaJuego(Juego juego);
 
 	public void importarCSV();
 	

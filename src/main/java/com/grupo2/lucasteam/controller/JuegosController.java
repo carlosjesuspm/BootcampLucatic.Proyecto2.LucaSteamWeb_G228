@@ -88,7 +88,7 @@ public class JuegosController {
 	@GetMapping("/modificarJuego")
 	public String modificarJuego(@RequestParam("id")int id, Model m) {
 //		m.addAttribute("juego", service.findById(id));
-		return "formularioJuego";
+		return "formularioAlta";
 	}
 	
 	/** Metodo eliminarJuego() - permite eliminar un juego de la lista Juegos
