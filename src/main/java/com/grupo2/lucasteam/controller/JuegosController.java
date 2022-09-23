@@ -106,33 +106,16 @@ public class JuegosController {
 		return ("redirect:/");
 
 	}
-
+	
 	/**
-	 * Método newJuego() - crea nuevos registros de tipo juego.
-	 * 
-	 * @param juego
+	 * Metodo de cargar la lista de juegos desde el csv
 	 * @param m
-	 * @return {@code formularioAlta}
-	 * @author Grupo 2 - Tamara Alvarez
+	 * @author Grupo 2 - Alonso Gomez
 	 * @since 1.0
 	 */
-//	@GetMapping("/altaJuego")
-//	public String newJuego(Juego juego, Model m) {
-//		m.addAttribute("juego", juego);
-//		return "formularioAlta";
-//	}
-//
-
-	/**
-	 * Método inmportarCSV que llama método importarCSV de la capa de Servicios.
-	 * 
-	 * @author Álvaro Román Gómez
-	 * @since 1.0
-	 */
-
-	public void importarCSV() {
-		log.info("Importando CSV en Controller.");
+	@GetMapping("/cargarCsv")
+	public String loadFile(Model m) {
 		service.importarCSV();
+		return ("redirect:/");
 	}
-
 }
