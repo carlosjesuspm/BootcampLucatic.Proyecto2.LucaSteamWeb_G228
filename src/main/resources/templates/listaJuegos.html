@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,20 +10,19 @@
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../static/css/custom.css" />
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
     <title>Lista Juegos</title>
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Alta juego</a></li>
-      </ul>
+
+    <nav class="nav">
+      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">Alta juego</a>
     </nav>
 
     <main>
       <div class="b-primercontenedor">
-        <p>
+        <!-- <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
           impedit labore rem, beatae mollitia aliquid laboriosam sequi
           aspernatur officia dolorem fugiat corporis tempore possimus unde
@@ -39,20 +38,39 @@
           labore rem, beatae mollitia aliquid laboriosam sequi aspernatur
           officia dolorem fugiat corporis tempore possimus unde sapiente
           repudiandae architecto ratione saepe.
-        </p>
+        </p> -->
+        <table class="table table-striped">
+          <tr>
+            <th>Nº</th>
+            <th>Rango</th>
+            <th>Nombre</th>
+            <th>Plataforma</th>
+            <th>Editor</th>
+            <th>Genero</th>
+            <th>Year</th>
+            <th>Acciones</th>
+          </tr>
+          <tr th:each="juego, status : ${userList}">
+            <td th:text="${status.index + 1}" />
+            <td th:text="${juego.rango}" />
+            <td th:text="${juego.nombre}" />
+            <td th:text="${juego.plataforma.nombre}" />
+            <td th:text="${juego.editor.nombre}"/>
+            <td th:text="${juego.genero.nombre}"/>
+            <td th:text="${juego.year}"/>
+            <td><a th:href="@{/edit(id=${user.id})}">Modificar</a> | <a
+              th:href="@{/delete(id=${user.id})}">Eliminar</a></td>
+          </tr>
+        </table>
       </div>
 
-      <div class="b-segundocontenedor">
+      <!-- <div class="b-segundocontenedor">
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#">Previous</a>
-          </li>
           <li class="page-item"><a class="page-link" href="#">1</a></li>
           <li class="page-item"><a class="page-link" href="#">2</a></li>
           <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
-      </div>
+      </div> -->
     </main>
   </body>
 </html>
