@@ -8,6 +8,6 @@ import com.grupo2.lucasteam.model.Plataforma;
 
 public interface PlataformasDAOI extends JpaRepository<Plataforma, Integer> {
 
-	Optional<Plataforma> findByNombre(String nombre);
+	Optional<Plataforma> findByPlataforma(String nombre);
 
 }

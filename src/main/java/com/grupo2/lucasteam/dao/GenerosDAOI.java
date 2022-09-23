@@ -8,6 +8,6 @@ import com.grupo2.lucasteam.model.Genero;
 
 public interface GenerosDAOI extends JpaRepository<Genero, Integer> {
 
-	Optional<Genero> findByNombre(String nombre);
+	Optional<Genero> findByGenero(String nombre);
 
 }

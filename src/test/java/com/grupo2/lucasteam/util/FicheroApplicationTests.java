@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.grupo2.lucasteam.model.Juego;
 
+@SpringBootTest
 public class FicheroApplicationTests {
 
 	@Autowired
@@ -20,9 +22,7 @@ public class FicheroApplicationTests {
 
 		ArrayList<Juego> juegos = f.importarCSV("prueba.csv");
 
-		for (Juego juego : juegos) {
-			assertNotNull(juego);
-		}
+		assertNotNull(juegos.get(0));
 
 	}
 

@@ -8,6 +8,6 @@ import com.grupo2.lucasteam.model.Editor;
 
 public interface EditoresDAOI extends JpaRepository<Editor, Integer> {
 
-	Optional<Editor> findByNombre(String nombre);
+	Optional<Editor> findByEditor(String nombre);
 
 }

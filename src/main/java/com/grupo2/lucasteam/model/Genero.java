@@ -28,6 +28,6 @@ public class Genero {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String nombre;
+	private String genero;
 
 }

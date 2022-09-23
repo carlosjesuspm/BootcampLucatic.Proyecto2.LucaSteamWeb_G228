@@ -15,6 +15,15 @@ import com.grupo2.lucasteam.model.FactoriaJuegos;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Juego;
 
+/**
+ * Clase Fichero que se encarga de los métodos para la lectura y escritura de
+ * los métodos.
+ * 
+ * @author Álvaro Román Gómez
+ * @version 1.0: 22/09/2022
+ * 
+ */
+
 @Component
 public class Fichero implements FicheroI {
 
@@ -22,6 +31,16 @@ public class Fichero implements FicheroI {
 
 	@Autowired
 	FactoriaJuegosI factoria;
+
+	/**
+	 * Método importarCSV que nos permite leer un fichero CSV y conseguir una lista
+	 * de objetos de clase Juego.
+	 * 
+	 * @param rutaArchivo - Rango del juego en el ranking de ventas.
+	 * @return ArrayList<Juego> - Devuelve una lista de objetos Juego.
+	 * @author Álvaro Román Gómez
+	 * @since 1.0
+	 */
 
 	@Override
 	public ArrayList<Juego> importarCSV(String rutaArchivo) {

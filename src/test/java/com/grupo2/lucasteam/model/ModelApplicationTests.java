@@ -16,11 +16,11 @@ public class ModelApplicationTests {
 		Editor editor = new Editor();
 
 		editor.setId(0);
-		editor.setNombre("Alvaro");
+		editor.setEditor("Alvaro");
 
 		// Then:
 		assertNotNull(editor);
-		assertEquals("Alvaro", editor.getNombre());
+		assertEquals("Alvaro", editor.getEditor());
 		assertEquals(0, editor.getId());
 
 	}
@@ -33,11 +33,11 @@ public class ModelApplicationTests {
 		Genero genero = new Genero();
 
 		genero.setId(0);
-		genero.setNombre("Action");
+		//genero.getGenero("Action");
 
 		// Then:
 		assertNotNull(genero);
-		assertEquals("Action", genero.getNombre());
+		assertEquals("Action", genero.getGenero());
 		assertEquals(0, genero.getId());
 
 	}
@@ -50,11 +50,11 @@ public class ModelApplicationTests {
 		Plataforma plataforma = new Plataforma();
 
 		plataforma.setId(0);
-		plataforma.setNombre("Alvaro");
+		plataforma.setPlataforma("Alvaro");
 
 		// Then:
 		assertNotNull(plataforma);
-		assertEquals("Alvaro", plataforma.getNombre());
+		assertEquals("Alvaro", plataforma.getPlataforma());
 		assertEquals(0, plataforma.getId());
 
 	}
