@@ -1,9 +1,14 @@
 package com.grupo2.lucasteam.service;
 
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupo2.lucasteam.dao.JuegosDAOI;
+import com.grupo2.lucasteam.model.FactoriaJuegos;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.util.FicheroI;
@@ -17,6 +22,8 @@ import com.grupo2.lucasteam.util.FicheroI;
  */
 @Service
 public class JuegosService implements JuegosServiceI {
+
+	private static final Logger log = LoggerFactory.getLogger(FactoriaJuegos.class);
 
 	@Autowired
 	JuegosDAOI juegosDAO;
@@ -38,6 +45,13 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public void importarCSV() {
 		// TODO Auto-generated method stub
+		ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
+		log.info("Importando lista de juegos en BBDD...");
+		for (Juego juego : juegos) {
+
+			juegosDAO.save(juego);
+
+		}
 
 	}
 
