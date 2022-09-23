@@ -33,7 +33,7 @@ public class ModelApplicationTests {
 		Genero genero = new Genero();
 
 		genero.setId(0);
-		genero.getGenero("Action");
+		//genero.getGenero("Action");
 
 		// Then:
 		assertNotNull(genero);
