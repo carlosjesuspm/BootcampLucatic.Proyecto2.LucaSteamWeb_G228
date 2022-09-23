@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -37,12 +38,15 @@ public class Juego {
 	private int id;
 	private int rango;
 	private String nombre;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_plataforma", referencedColumnName = "id")
 	private Plataforma id_plataforma;
-	private Year fecha;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private int fecha;
+	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_genero", referencedColumnName = "id")
 	private Genero id_genero;
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_editor", referencedColumnName = "id")
 	private Editor id_editor;
 	private double NA_ventas;
 	private double EU_ventas;

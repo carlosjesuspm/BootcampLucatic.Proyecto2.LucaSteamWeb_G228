@@ -14,5 +14,7 @@ public interface FactoriaJuegosI {
 	public Juego crearJuego(String rango, String nombre, String id_plataforma, String fecha, String id_genero,
 			String id_editor, String NA_ventas, String EU_ventas, String JP_ventas, String otras_ventas,
 			String ventas_globales);
+	
+	public JuegoFormulario formGameFromGame(Juego j);
 
 }

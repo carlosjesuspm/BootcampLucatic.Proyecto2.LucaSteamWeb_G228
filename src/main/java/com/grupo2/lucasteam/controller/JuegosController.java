@@ -2,6 +2,7 @@ package com.grupo2.lucasteam.controller;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.lucasteam.model.Editor;
+import com.grupo2.lucasteam.model.FactoriaJuegos;
+import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
+import com.grupo2.lucasteam.model.JuegoFormulario;
 import com.grupo2.lucasteam.model.Plataforma;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
@@ -39,6 +44,8 @@ public class JuegosController {
 
 	@Autowired
 	JuegosServiceI service;
+	@Autowired
+	FactoriaJuegosI fj;
 
 	private static final Logger log = LoggerFactory.getLogger(JuegosController.class);
 
@@ -53,26 +60,7 @@ public class JuegosController {
 
 	@GetMapping("/")
 	public String listaJuegos(Model m) {
-//		m.addAttribute("listaJuegos", service.findAll());
-//		datos prueba
-		Genero g = new Genero(0, "Genero");
-		Editor e = new Editor(0, "Editor");
-		Plataforma p = new Plataforma(0, "Plataforma");
-		ArrayList<Juego> juegos = new ArrayList<>();
-		for (int i = 0; i < 50; i++) {
-			Juego j = new Juego();
-			j.setId(i);
-			j.setNombre("Juego " + i);
-			j.setRango(i);
-			j.setId_plataforma(p);
-			j.setId_editor(e);
-			j.setId_genero(g);
-			j.setFecha(Year.now());
-			juegos.add(j);
-		}
-		m.addAttribute("listaJuegos", juegos);
-//		datos prueba
-
+		m.addAttribute("listaJuegos", service.findAll());
 		return "listaJuegos";
 	}
 
@@ -87,8 +75,15 @@ public class JuegosController {
 
 	@GetMapping("/modificarJuego")
 	public String modificarJuego(@RequestParam("id") int id, Model m) {
-//		m.addAttribute("juego", service.findById(id));
-		return "formularioAlta";
+		Optional<Juego> j = service.findById(id);
+		if (j.isPresent()) {
+			m.addAttribute("juego", fj.formGameFromGame(j.get()));
+			return "formularioAlta";
+		} else {
+			return "error";
+		}
+		
+		
 	}
 
 	/**
@@ -102,13 +97,15 @@ public class JuegosController {
 
 	@GetMapping("/eliminarJuego")
 	public String eliminarJuego(@RequestParam("id") int id) {
-//		service.deleteById(id);
+		System.out.println("===========================Eliminar juego " + id);
+		service.deleteById(id);
 		return ("redirect:/");
 
 	}
-	
+
 	/**
 	 * Metodo de cargar la lista de juegos desde el csv
+	 * 
 	 * @param m
 	 * @author Grupo 2 - Alonso Gomez
 	 * @since 1.0
@@ -118,4 +115,33 @@ public class JuegosController {
 		service.importarCSV();
 		return ("redirect:/");
 	}
+
+	/**
+	 * Metodo para dar de alta un juego
+	 * 
+	 * @param juego
+	 * @param m
+	 * @return
+	 */
+	@GetMapping("/altaJuego")
+	public String newJuego(JuegoFormulario juego, Model m) {
+		m.addAttribute("juego", juego);
+		return "formularioAlta";
+	}
+
+	/**
+	 * Metodo para guardar le juego creado
+	 * 
+	 * @param juego
+	 * @return
+	 */
+	@PostMapping("/save")
+	public String save(JuegoFormulario j) {
+		Juego juego = fj.crearJuego(j.getRango(), j.getNombre(), j.getId_plataforma(), j.getFecha(), j.getId_genero(),
+				j.getId_editor(), j.getNA_ventas(), j.getEU_ventas(), j.getJP_ventas(), j.getOtras_ventas(), j.getVentas_globales());
+		
+		service.altaJuego(juego);
+		return ("redirect:/");
+	}
+
 }
