@@ -1,6 +1,6 @@
 package com.grupo2.lucasteam.util;
 
-import java.util.TreeSet;
+import java.util.ArrayList;
 
 import com.grupo2.lucasteam.model.Juego;
 
@@ -14,6 +14,6 @@ import com.grupo2.lucasteam.model.Juego;
 
 public interface FicheroI {
 
-	public TreeSet<Juego> importarCSV(String rutaArchivo);
+	public ArrayList<Juego> importarCSV(String rutaArchivo);
 
 }

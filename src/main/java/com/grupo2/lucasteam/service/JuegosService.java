@@ -1,8 +1,8 @@
 package com.grupo2.lucasteam.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +72,7 @@ public class JuegosService implements JuegosServiceI {
 
 		while (!CSVcargado) {
 			// TODO Auto-generated method stub
-			TreeSet<Juego> juegos = fichero.importarCSV("vgsales.csv");
+			ArrayList<Juego> juegos = fichero.importarCSV("vgsales.csv");
 			log.info("Importando lista de juegos en BBDD...");
 			for (Juego juego : juegos) {
 				if (!validar.existeJuego(juego)) {
