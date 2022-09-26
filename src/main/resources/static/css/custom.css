@@ -6,7 +6,7 @@ main {
 }
 
 .b-primercontenedor {
-	margin: 3vh;
+	margin: 10vh;
 	/* border: solid black 1px; */
 	padding: 1rem;
 	width: 80%;
@@ -21,15 +21,21 @@ nav {
 	flex-direction: row;
 	display: flex;
 }
+.nav-pills{
+	color: rgb(0, 0, 0);
+	
+}
 
 a {
 	color: rgb(0, 0, 0);
 }
 
-/* nav>a:hover {
-	color: rgb(255, 255, 255);
-	text-decoration: bold;
-} */
-a:hover {
-	text-decoration: none;
+
+
+
+a.nav-link{
+color:black;
+text-decoration: none;
+
 }
+

@@ -10,12 +10,58 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" th:href="@{/css/altaJuego.css}" />
+ <link rel="stylesheet" th:href="@{/css/altaJuego.css}" />
+
+
     
     <title>Alta Juegos</title>
   </head>
-  <body>
+    <body>
+
+    <div class="navegador">
+        <nav class="nav">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="/altaJuego">Alta juego</a>
+            <a class="nav-link" href="/cargarCsv">Cargar lista csv</a>
+           
+
+  
+
+
+              <ul class="nav nav-pills">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Genero</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#!">Action</a>
+                    <a class="dropdown-item" href="#!">Adventure</a>
+                    <a class="dropdown-item" href="#!">Fighting</a>
+                    <a class="dropdown-item" href="#!">Misc</a>
+                    <a class="dropdown-item" href="#!">Platform</a>
+                    <a class="dropdown-item" href="#!">Puzzle</a>
+                    <a class="dropdown-item" href="#!">Racing</a>
+                    <a class="dropdown-item" href="#!">Role-Playing</a>
+                    <a class="dropdown-item" href="#!">Shooter</a>
+                    <a class="dropdown-item" href="#!">Simulation</a>
+                    <a class="dropdown-item" href="#!">Sports</a>
+                    <a class="dropdown-item" href="#!">Strategy</a>
+                   </div>
+                </li>
+              </ul>
+
+
+            
+            
+          </nav>
+      
+    </div>
+   
+
+
+
+<main>
+
     <div class="bloque_formulario">
       <form method="post" th:object="${juego}" th:action="@{/save}">
         <h2>Creación Juego</h2>
@@ -28,7 +74,7 @@
           type="text"
           th:field="*{nombre}"
           minlength="1"
-          placeholder="Introducir nombre juego"
+          placeholder="nombre juego"
         />
         <label for="id_plataforma">Plataforma: </label>
         <input
@@ -37,25 +83,19 @@
           type="text"
           th:field="*{plataforma.plataforma}"
           minlength="1"            
-          placeholder="Introducir plataforma"
+          placeholder="plataforma"
         />
-        <label for="fecha">Fecha: </label>
-        <input
-          class="form-control"
-          id="fecha"
-          type="number"
-          th:field="*{fecha}"
-          minlength="1"
-          placeholder="Introduzca año"
-        />
-        <label for="id_genero">Género: </label>
+        
+
+
+        <label for="id_genero">Genero: </label>
         <input
           class="form-control"
           id="id_genero"
           type="text"
           th:field="*{genero.genero}"
           minlength="1"
-          placeholder="Introducir género"
+          placeholder=" género"
         />
         <label for="id_editor">Editor: </label>
         <input
@@ -64,13 +104,19 @@
           type="text"
           th:field="*{editor.editor}"
           minlength="1"
-          placeholder="Introducir editor"
+          placeholder="editor"
         />
-        <button type="submit" class="btn btn-primary btn-lg btn-block" >
-          Guardar Juego
-        </button>
-      </form>
-    </div>
+      
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
+    
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -87,5 +133,44 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
+
+
+    <div class="calendario">
+        <label for="fecha">Lanzamiento: </label>
+
+        <input type="text" th:field="*{fecha}"class="form-control" name="datepicker" id="datepicker" />
+
+        
+
+        <script>
+            $(document).ready(function(){
+              $("#datepicker").datepicker({
+                 format: "yyyy",
+                 viewMode: "years", 
+                 minViewMode: "years",
+                 autoclose:true
+              });   
+            })
+            
+            
+            </script>
+
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+	</div>
+	    </div>
+	    </div>
+    <section:class="boton">
+    <button type="submit" class="btn" >
+        Guardar
+      </button>
+      </section>
+    </form>
+    </main>
   </body>
 </html>
