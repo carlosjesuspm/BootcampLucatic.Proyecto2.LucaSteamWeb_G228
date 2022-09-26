@@ -183,4 +183,28 @@ public class JuegosController {
 		return ("redirect:/");
 	}
 
+	/**
+	 * Metodo para filtrar los juegos de años pares y mostrarlos.
+	 * 
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/anniospares")
+	public String listaJuegosAnniosPares(Model m) {
+		log.info("Obteniendo juegos de años pares en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosAnniosPares());
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar los juegos con ventas por encima de la media europea.
+	 * 
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/ventaseuropa")
+	public String listaJuegosVentasEuropa(Model m) {
+		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
+		return ("redirect:/");
+	}
+
 }
