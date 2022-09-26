@@ -157,12 +157,12 @@ public class JuegosService implements JuegosServiceI {
 
 	@Override
 	public ArrayList<Juego> findAllByEditor(String editor) {
-//		if (editor == null) {
-//			return juegosDAO.findAllByEditor("Nintendo");
-//		} else {
-//			return juegosDAO.findAllByEditor(editor);
-//		}
-		return null;
+		if (editor == null) {
+			return juegosDAO.findAllByEditor("Nintendo");
+		} else {
+			return juegosDAO.findAllByEditor(editor);
+		}
+//		return null;
 	}
 
 }
