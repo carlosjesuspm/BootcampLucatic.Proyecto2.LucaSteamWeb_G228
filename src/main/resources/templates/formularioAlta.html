@@ -20,6 +20,7 @@
       <form method="post" th:object="${juego}" th:action="@{/save}">
         <h2>Creación Juego</h2>
         <input id="id" th:field="*{id}" type="hidden" />
+        <input id="rango" th:field="*{rango}" type="hidden" />
         <label for="nombre">Nombre: </label>
         <input
           class="form-control"
