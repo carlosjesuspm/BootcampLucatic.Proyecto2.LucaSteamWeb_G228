@@ -158,4 +158,29 @@ public class JuegosController {
 		return ("redirect:/");
 	}
 
+	/**
+	 * Metodo para filtrar juegos por Año y mostrarlos.
+	 * 
+	 * @param @RequestParam("fecha") int genero
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/fecha")
+	public String listaJuegosFecha(@RequestParam("fecha") int fecha, Model m) {
+		log.info("Obteniendo juegos del año " + fecha + " en JuegosController...");
+		m.addAttribute("listaJuegos", service.findAllByFecha(fecha));
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar los juegos del siglo XX y mostrarlos.
+	 * 
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/sigloxx")
+	public String listaJuegosSigloXX(Model m) {
+		log.info("Obteniendo juegos del siglo XX en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosSigloXX());
+		return ("redirect:/");
+	}
+
 }
