@@ -162,7 +162,6 @@ public class JuegosService implements JuegosServiceI {
 		} else {
 			return juegosDAO.findAllByEditor(editor);
 		}
-//		return null;
 	}
 
 }
