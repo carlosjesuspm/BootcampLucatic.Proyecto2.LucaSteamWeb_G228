@@ -33,6 +33,15 @@ public class Plataforma {
 	private int id;
 	private String plataforma;
 
+	/**
+	 * Método equals para comparar plataformas y definir cuándo son iguales. En este
+	 * caso serán iguales si coinciden todos sus atributos.
+	 * 
+	 * @param obj - objeto instanciado.
+	 * @return boolean
+	 * @author Álvaro Román Gómez
+	 * @since 1.0
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

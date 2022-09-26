@@ -1,6 +1,5 @@
 package com.grupo2.lucasteam.service;
 
-import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -122,7 +121,7 @@ public class JuegosService implements JuegosServiceI {
 	public void importarCSV() {
 
 		while (!CSVcargado) {
-			ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
+			ArrayList<Juego> juegos = fichero.importarCSV("vgsales.csv");
 			log.info("Importando lista de juegos en BBDD...");
 			for (Juego juego : juegos) {
 				if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
@@ -154,6 +153,16 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public Optional<Juego> findById(int id) {
 		return juegosDAO.findById(id);
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByEditor(String editor) {
+		if (editor == null) {
+			return juegosDAO.findAllByEditor("Nintendo");
+		} else {
+			return juegosDAO.findAllByEditor(editor);
+		}
+//		return null;
 	}
 
 }

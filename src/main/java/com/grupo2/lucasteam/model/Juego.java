@@ -1,9 +1,7 @@
 package com.grupo2.lucasteam.model;
 
-import java.time.Year;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -54,6 +52,15 @@ public class Juego {
 	private double otras_ventas;
 	private double ventas_globales;
 
+	/**
+	 * Método equals para comparar juegos y definir cuándo son iguales. En este caso
+	 * serán iguales si coinciden: nombre, fecha, editor, plataforma y genero.
+	 * 
+	 * @param obj - objeto instanciado.
+	 * @return boolean
+	 * @author Álvaro Román Gómez
+	 * @since 1.0
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
