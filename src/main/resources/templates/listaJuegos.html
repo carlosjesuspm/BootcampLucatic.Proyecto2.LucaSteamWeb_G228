@@ -17,6 +17,22 @@
 			th:href="@{/altaJuego}">Alta juego</a> <a class="nav-link"
 			th:href="@{/cargarCsv}">Cargar lista csv</a> <a class="nav-link"
 			th:href="@{/editor(editor='Nintendo')}">Juegos de Nintendo</a>
+			
+			<form class="form-inline" th:action="@{/editor}" method="get">
+  				<input class="form-control" type="text" th:value="${editor}" name="editor" placeholder="Editor"/>
+  					<button class="btn btn-dark" type="submit">Buscar editor</button>
+			</form>
+			
+			  
+
+			<form class="form-inline" th:action="@{/fecha}" method="get">
+  				<input class="form-control" type="number" th:value="${fecha}" name="fecha" placeholder="Año" min="1950"
+					max="2025"/>
+					<div class="input-group-append">
+  					<button class="btn btn-dark" type="submit">Buscar año</button>
+					</div>
+			</form>
+			
 			<a class="nav-link active" th:href="@{/sigloxx}">Juegos del Siglo XX</a>
 			<a class="nav-link active" th:href="@{/anniospares}">Juegos de años pares</a>
 			
@@ -32,8 +48,7 @@
 				</div></li>
 		</ul>
 	
-            <label class="nav-link active" for="editor">Editor</label>
-            <input type="text" class="buscador"  placeholder="indique editor " /><input type="submit" class="buscador" >
+	
 	</nav>
 
 	<main>
