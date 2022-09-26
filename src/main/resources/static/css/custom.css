@@ -21,15 +21,21 @@ nav {
 	flex-direction: row;
 	display: flex;
 }
+.nav-pills{
+	color: rgb(0, 0, 0);
+	
+}
 
 a {
 	color: rgb(0, 0, 0);
 }
 
-/* nav>a:hover {
-	color: rgb(255, 255, 255);
-	text-decoration: bold;
-} */
-a:hover {
-	text-decoration: none;
+
+
+
+a.nav-link{
+color:black;
+text-decoration: none;
+
 }
+
