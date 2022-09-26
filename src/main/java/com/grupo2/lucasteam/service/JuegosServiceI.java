@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
 
 /**
@@ -22,6 +23,8 @@ public interface JuegosServiceI {
 	public void importarCSV();
 
 	public List<Juego> findAll();
+	
+	public List<Genero> findAllGenero();
 
 	public void deleteById(int id);
 

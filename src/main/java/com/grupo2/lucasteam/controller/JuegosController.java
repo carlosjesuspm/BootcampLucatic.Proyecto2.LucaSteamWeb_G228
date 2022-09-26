@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.controller;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.lucasteam.model.Editor;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
@@ -55,6 +57,9 @@ public class JuegosController {
 	@GetMapping("/")
 	public String listaJuegos(Model m) {
 		m.addAttribute("listaJuegos", service.findAll());
+		ArrayList<Genero> gen = (ArrayList<Genero>) service.findAllGenero();
+		System.out.println(gen);
+		m.addAttribute("listaGeneros", gen);
 		return "listaJuegos";
 	}
 
