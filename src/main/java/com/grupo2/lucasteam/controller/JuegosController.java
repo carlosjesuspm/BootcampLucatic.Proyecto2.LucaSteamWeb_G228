@@ -146,14 +146,14 @@ public class JuegosController {
 	}
 
 	/**
-	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
+	 * Metodo para filtrar juegos por Genero y mostrarlos.
 	 * 
-	 * @param @RequestParam("pltaforma") String platforma
+	 * @param @RequestParam("genero") String genero
 	 * @return "redirect:/"
 	 */
 	@GetMapping("/genero")
 	public String listaJuegosGenero(@RequestParam("genero") String genero, Model m) {
-		log.info("Obteniendo juegos de plataforma " + genero + " en JuegosController.");
+		log.info("Obteniendo juegos por genero " + genero + " en JuegosController...");
 		m.addAttribute("listaJuegos", service.findAllByGenero(genero));
 		return ("redirect:/");
 	}
