@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.model;
 
+import java.time.Year;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -39,7 +40,7 @@ public class Juego {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_plataforma", referencedColumnName = "id")
 	private Plataforma plataforma;
-	private int fecha;
+	private int fecha = Year.now().getValue();
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_genero", referencedColumnName = "id")
 	private Genero genero;

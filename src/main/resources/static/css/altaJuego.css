@@ -54,3 +54,23 @@ text-decoration: none;
 
 }
 
+label {
+	margin-top: 2vh;
+}
+
+nav {
+	position: fixed;
+	width: 100%;
+	border-bottom: solid rgb(121, 121, 121) 0.5px;
+	background-color: rgb(139, 139, 139);
+	flex-direction: row;
+	display: flex;
+}
+
+a {
+	color: rgb(0, 0, 0);
+}
+
+a:hover {
+	text-decoration: none;
+}
