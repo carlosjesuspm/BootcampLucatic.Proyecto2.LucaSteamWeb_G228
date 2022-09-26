@@ -60,9 +60,9 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public void altaJuego(Juego juego) {
 
-		Plataforma p = juego.getId_plataforma();
-		Genero g = juego.getId_genero();
-		Editor e = juego.getId_editor();
+		Plataforma p = juego.getPlataforma();
+		Genero g = juego.getGenero();
+		Editor e = juego.getEditor();
 
 		if (!ValidacionesI.<Plataforma>existe(p, plataformasDAO.findAllByPlataforma(p.getPlataforma()))) {
 			p = plataformasDAO.save(p);
@@ -74,7 +74,7 @@ public class JuegosService implements JuegosServiceI {
 			}
 			log.info("Recuperando plataforma " + p.getPlataforma());
 		}
-		juego.setId_plataforma(p);
+		juego.setPlataforma(p);
 
 		if (!ValidacionesI.<Genero>existe(g, generosDAO.findAllByGenero(g.getGenero()))) {
 			g = generosDAO.save(g);
@@ -85,7 +85,7 @@ public class JuegosService implements JuegosServiceI {
 				g = gOpt.get();
 			log.info("Recuperando genero " + g.getGenero());
 		}
-		juego.setId_genero(g);
+		juego.setGenero(g);
 
 		if (!ValidacionesI.<Editor>existe(e, editoresDAO.findAllByEditor(e.getEditor()))) {
 			e = editoresDAO.save(e);
@@ -96,7 +96,7 @@ public class JuegosService implements JuegosServiceI {
 				e = eOpt.get();
 			log.info("Recuperando editor " + e.getEditor());
 		}
-		juego.setId_editor(e);
+		juego.setEditor(e);
 
 		if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
 			log.info("Guardando juego " + juego.getNombre());
@@ -104,6 +104,7 @@ public class JuegosService implements JuegosServiceI {
 		} else {
 			log.info("El juego " + juego.getNombre() + " ya está en la BBDD.");
 		}
+
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class JuegosService implements JuegosServiceI {
 	public void importarCSV() {
 
 		while (!CSVcargado) {
-			ArrayList<Juego> juegos = fichero.importarCSV("vgsales.csv");
+			ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
 			log.info("Importando lista de juegos en BBDD...");
 			for (Juego juego : juegos) {
 				if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
@@ -157,12 +158,10 @@ public class JuegosService implements JuegosServiceI {
 
 	@Override
 	public ArrayList<Juego> findAllByEditor(String editor) {
-		if (editor == null) {
-			return juegosDAO.findAllByEditor("Nintendo");
-		} else {
-			return juegosDAO.findAllByEditor(editor);
-		}
-//		return null;
+
+		Optional<Editor> e = editoresDAO.findByEditor(editor);
+		ArrayList<Juego> juegos = juegosDAO.findAllByEditor(e.get());
+		return juegos;
 	}
 
 }

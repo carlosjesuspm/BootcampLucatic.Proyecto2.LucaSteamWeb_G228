@@ -119,7 +119,7 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 			}
 			// PLATAFORMA - NOT NULL
 			try {
-				juego.setId_plataforma(plat);
+				juego.setPlataforma(plat);
 			} catch (NullPointerException npe) {
 				// TODO: handle exception
 				log.warn("Plataforma vacía: " + npe.getMessage());
@@ -137,7 +137,7 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 			}
 			// GENERO - NOT NULL
 			try {
-				juego.setId_genero(gen);
+				juego.setGenero(gen);
 			} catch (NullPointerException npe) {
 				// TODO: handle exception
 				log.warn("Genero vacío: " + npe.getMessage());
@@ -145,7 +145,7 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 
 			// EDITOR - NOT NULL
 			try {
-				juego.setId_editor(edit);
+				juego.setEditor(edit);
 			} catch (NullPointerException npe) {
 				// TODO: handle exception
 				log.warn("Editor vacío: " + npe.getMessage());

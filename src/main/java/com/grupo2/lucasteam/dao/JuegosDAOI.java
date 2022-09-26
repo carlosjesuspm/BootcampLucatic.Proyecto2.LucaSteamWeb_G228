@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.grupo2.lucasteam.model.Editor;
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
+import com.grupo2.lucasteam.model.Plataforma;
 
 /**
  * Interfaz JuegosDAOI que se encarga de gestionar las consultas a la tabla
@@ -40,11 +43,11 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 	 */
 	ArrayList<Juego> findAllByNombre(String nombre);
 	
-	ArrayList<Juego> findAllByPlataforma(String plataforma);
+	ArrayList<Juego> findAllByPlataforma(Plataforma plataforma);
 	
-	ArrayList<Juego> findAllByEditor(String editor);
+	ArrayList<Juego> findAllByEditor(Editor editor);
 
-	ArrayList<Juego> findAllByGenero(String genero);
+	ArrayList<Juego> findAllByGenero(Genero genero);
 
 	ArrayList<Juego> findAllByFecha(int fecha);
 	

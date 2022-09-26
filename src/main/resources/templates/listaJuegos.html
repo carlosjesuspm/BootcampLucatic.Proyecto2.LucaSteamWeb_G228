@@ -15,10 +15,10 @@
   </head>
   <body>
     <nav class="nav">
-      <a class="nav-link active" href="#">Home</a>
-      <a class="nav-link" href="/altaJuego">Alta juego</a>
-      <a class="nav-link" href="/cargarCsv">Cargar lista csv</a>
-      <a class="nav-link" href="/editor">Juegos de Nintendo</a>
+      <a class="nav-link active" th:href="@{/}">Home</a>
+      <a class="nav-link" th:href="@{/altaJuego}">Alta juego</a>
+      <a class="nav-link" th:href="@{/cargarCsv}">Cargar lista csv</a>
+      <a class="nav-link" th:href="@{/editor(editor='Nintendo')}">Juegos de Nintendo</a>
     </nav>
 
     <main>
@@ -35,10 +35,10 @@
           </tr>
           <tr th:each="juego, status : ${listaJuegos}">
             <td th:text="${status.index + 1}" />
-            <td th:text="${juego.nombre}" />
-            <td th:text="${juego.id_plataforma.plataforma}" />
-            <td th:text="${juego.id_editor.editor}" />
-            <td th:text="${juego.id_genero.genero}" />
+            <td th:text="${juego.nombre}"/>
+            <td th:text="${juego.plataforma.plataforma}" />
+            <td th:text="${juego.editor.editor}" />
+            <td th:text="${juego.genero.genero}" />
             <td th:text="${juego.fecha}" />
             <td>
               <a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> |
