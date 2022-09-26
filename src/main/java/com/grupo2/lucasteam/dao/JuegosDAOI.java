@@ -26,6 +26,12 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 
 	ArrayList<Juego> findAllByFecha(int annio);
 
+<<<<<<< Updated upstream
+=======
+	@Query("FROM Juego WHERE fecha%2 = 0")
+	ArrayList<Juego> findAllFechaPar();
+
+>>>>>>> Stashed changes
 	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
 
 }
