@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,5 +20,7 @@ public interface JuegosServiceI {
 	public void deleteById(int id);
 
 	public Optional<Juego> findById(int id);
+	
+	public ArrayList<Juego> findAllByEditor(String editor);
 
 }

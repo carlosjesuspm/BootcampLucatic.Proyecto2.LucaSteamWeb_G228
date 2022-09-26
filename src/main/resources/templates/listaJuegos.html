@@ -14,11 +14,11 @@
     <title>Lista Juegos</title>
   </head>
   <body>
-
     <nav class="nav">
       <a class="nav-link active" href="#">Home</a>
       <a class="nav-link" href="/altaJuego">Alta juego</a>
       <a class="nav-link" href="/cargarCsv">Cargar lista csv</a>
+      <a class="nav-link" href="/editor">Juegos de Nintendo</a>
     </nav>
 
     <main>
@@ -37,14 +37,31 @@
             <td th:text="${status.index + 1}" />
             <td th:text="${juego.nombre}" />
             <td th:text="${juego.id_plataforma.plataforma}" />
-            <td th:text="${juego.id_editor.editor}"/>
-            <td th:text="${juego.id_genero.genero}"/>
-            <td th:text="${juego.fecha}"/>
-            <td><a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> | <a
-              th:href="@{/eliminarJuego(id=${juego.id})}">Eliminar</a></td>
+            <td th:text="${juego.id_editor.editor}" />
+            <td th:text="${juego.id_genero.genero}" />
+            <td th:text="${juego.fecha}" />
+            <td>
+              <a th:href="@{/modificarJuego(id=${juego.id})}">Modificar</a> |
+              <a th:href="@{/eliminarJuego(id=${juego.id})}">Eliminar</a>
+            </td>
           </tr>
         </table>
       </div>
     </main>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+      integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

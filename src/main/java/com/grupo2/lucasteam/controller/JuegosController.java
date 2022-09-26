@@ -130,5 +130,7 @@ public class JuegosController {
 		service.altaJuego(j);
 		return ("redirect:/");
 	}
+	
+	
 
 }
