@@ -228,4 +228,13 @@ public class JuegosService implements JuegosServiceI {
 		return generosDAO.findAll();
 	}
 
+	@Override
+	public ArrayList<Juego> findAllByGenero(int idGenero) {
+		Optional<Genero> gen = generosDAO.findById(idGenero);
+		if (gen.isPresent()) {
+			return juegosDAO.findAllByGenero(gen.get());
+		}
+		return new ArrayList<>();
+	}
+
 }

@@ -56,9 +56,7 @@ public class JuegosController {
 	@GetMapping("/")
 	public String listaJuegos(Model m) {
 		m.addAttribute("listaJuegos", service.findAll());
-		ArrayList<Genero> gen = (ArrayList<Genero>) service.findAllGenero();
-		System.out.println(gen);
-		m.addAttribute("listaGeneros", gen);
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
@@ -113,23 +111,28 @@ public class JuegosController {
 	}
 
 	/**
-	 * Metodo para dar de alta un juego
+	 * Metodo para crear un juego
 	 * 
 	 * @param juego
 	 * @param m
-	 * @return
+	 * @return {@code formularioAlta}
+	 * @author Grupo 2 - Tamara Alvarez
+	 * @since 1.0
 	 */
 	@GetMapping("/altaJuego")
 	public String newJuego(Juego juego, Model m) {
 		m.addAttribute("juego", juego);
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "formularioAlta";
 	}
 
 	/**
-	 * Metodo para guardar le juego creado
+	 * Metodo para guardar el juego creado
 	 * 
-	 * @param juego
-	 * @return
+	 * @param j
+	 * @return {@code redirect:/}
+	 * @author Grupo 2 - Tamara Alvarez
+	 * @since 1.0
 	 */
 	@PostMapping("/save")
 	public String save(Juego j) {
@@ -147,9 +150,11 @@ public class JuegosController {
 	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
 		log.info("Obteniendo juegos de editor " + editor + " en JuegosController.");
 		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
+	
 	/**
 	 * Metodo para filtrar juegos por Plataforma y mostrarlos. Metodo para filtrar
 	 * juegos por Genero y mostrarlos.
@@ -159,11 +164,10 @@ public class JuegosController {
 	 * @return "redirect:/"
 	 */
 	@GetMapping("/genero")
-	public String listaJuegosGenero(@RequestParam("genero") String genero, Model m) {
-		log.info("Obteniendo juegos de plataforma " + genero + " en JuegosController.");
-		log.info("Obteniendo juegos por genero " + genero + " en JuegosController...");
-		m.addAttribute("listaJuegos", service.findAllByGenero(genero));
-		return ("redirect:/");
+	public String listaJuegosGenero(@RequestParam("id") int idGenero, Model m) {
+		m.addAttribute("listaJuegos", service.findAllByGenero(idGenero));
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
 	}
 
 	/**

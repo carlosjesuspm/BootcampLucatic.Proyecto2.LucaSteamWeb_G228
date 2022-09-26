@@ -32,6 +32,8 @@ public interface JuegosServiceI {
 
 	public ArrayList<Juego> findAllByEditor(String editor);
 
+	public ArrayList<Juego> findAllByGenero(int idGenero);
+	
 	public ArrayList<Juego> findAllByFecha(int fecha);
 
 	public ArrayList<Juego> findAllByGenero(String genero);
