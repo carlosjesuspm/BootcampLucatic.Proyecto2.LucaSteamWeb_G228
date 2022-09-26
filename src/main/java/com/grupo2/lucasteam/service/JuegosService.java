@@ -160,8 +160,16 @@ public class JuegosService implements JuegosServiceI {
 	public ArrayList<Juego> findAllByEditor(String editor) {
 
 		Optional<Editor> e = editoresDAO.findByEditor(editor);
-		ArrayList<Juego> juegos = juegosDAO.findAllByEditor(e.get());
-		return juegos;
+		ArrayList<Juego> juegos;
+		if (e.isPresent()) {
+			juegos = juegosDAO.findAllByEditor(e.get());
+			log.info("Buscando juegos del editor " + e.get().getEditor());
+			return juegos;
+		}
+		
+		log.error("El editor no existe o ha ocurrido otro problema...");
+		return new ArrayList<>();
+		
 	}
 
 }
