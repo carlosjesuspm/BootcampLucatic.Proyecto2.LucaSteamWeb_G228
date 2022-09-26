@@ -211,10 +211,16 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public ArrayList<Juego> listaJuegosAnniosPares() {
 		// TODO Auto-generated method stub
-		ArrayList<Juego> juegos = juegosDAO.findallb
-		
-		
-		return null;
+		ArrayList<Juego> juegos = juegosDAO.findAllFechaPar();
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos del siglo XX");
+
+		} else {
+			log.info("No hay juegos del siglo XX.");
+
+		}
+		return juegos;
+
 	}
 
 	@Override
