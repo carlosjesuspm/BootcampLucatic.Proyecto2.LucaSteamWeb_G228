@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.grupo2.lucasteam.model.Editor;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
@@ -138,73 +139,24 @@ public class JuegosController {
 	 * @param @RequestParam("pltaforma") String platforma
 	 * @return "redirect:/"
 	 */
-	@GetMapping("/plataforma")
-	public String listaJuegosPlaforma(@RequestParam("plataforma") String plataforma, Model m) {
-		log.info("Obteniendo juegos de plataforma " + plataforma + " en JuegosController.");
-		service.findAllByEditor(plataforma);
-		return ("redirect:/");
+	@GetMapping("/editor")
+	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
+		log.info("Obteniendo juegos de editor " + editor + " en JuegosController.");
+		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
+		return "listaJuegos";
 	}
 
 	/**
-	 * Metodo para filtrar juegos por Genero y mostrarlos.
+	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
 	 * 
-	 * @param @RequestParam("genero") String genero
+	 * @param @RequestParam("pltaforma") String platforma
 	 * @return "redirect:/"
-	 */
-	@GetMapping("/genero")
-	public String listaJuegosGenero(@RequestParam("genero") String genero, Model m) {
-		log.info("Obteniendo juegos por genero " + genero + " en JuegosController...");
-		m.addAttribute("listaJuegos", service.findAllByGenero(genero));
-		return ("redirect:/");
-	}
-
-	/**
-	 * Metodo para filtrar juegos por Año y mostrarlos.
-	 * 
-	 * @param @RequestParam("fecha") int genero
-	 * @return "redirect:/"
-	 */
-	@GetMapping("/fecha")
-	public String listaJuegosFecha(@RequestParam("fecha") int fecha, Model m) {
-		log.info("Obteniendo juegos del año " + fecha + " en JuegosController...");
-		m.addAttribute("listaJuegos", service.findAllByFecha(fecha));
-		return ("redirect:/");
-	}
-
-	/**
-	 * Metodo para filtrar los juegos del siglo XX y mostrarlos.
-	 * 
-	 * @return "redirect:/"
-	 */
-	@GetMapping("/sigloxx")
-	public String listaJuegosSigloXX(Model m) {
-		log.info("Obteniendo juegos del siglo XX en JuegosController...");
-		m.addAttribute("listaJuegos", service.listaJuegosSigloXX());
-		return ("redirect:/");
-	}
-
-	/**
-	 * Metodo para filtrar los juegos de años pares y mostrarlos.
-	 * 
-	 * @return "redirect:/"
-	 */
-	@GetMapping("/anniospares")
-	public String listaJuegosAnniosPares(Model m) {
-		log.info("Obteniendo juegos de años pares en JuegosController...");
-		m.addAttribute("listaJuegos", service.listaJuegosAnniosPares());
-		return ("redirect:/");
-	}
-
-	/**
-	 * Metodo para filtrar los juegos con ventas por encima de la media europea.
-	 * 
-	 * @return "redirect:/"
-	 */
-	@GetMapping("/ventaseuropa")
-	public String listaJuegosVentasEuropa(Model m) {
-		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
-		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
-		return ("redirect:/");
-	}
+	 *//*
+		 * @GetMapping("/editor") public String
+		 * listaJuegosGenero(@RequestParam("editor") String editor, Model m) {
+		 * log.info("Obteniendo juegos de plataforma " + editor +
+		 * " en JuegosController."); m.addAttribute("listaJuegos",
+		 * service.findAllByEditor(editor)); return ("redirect:/"); }
+		 */
 
 }

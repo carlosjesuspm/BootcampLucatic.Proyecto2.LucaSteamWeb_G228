@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.model;
 
+import java.time.Year;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -38,14 +39,14 @@ public class Juego {
 	private String nombre;
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_plataforma", referencedColumnName = "id")
-	private Plataforma id_plataforma;
-	private int fecha;
+	private Plataforma plataforma;
+	private int fecha = Year.now().getValue();
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_genero", referencedColumnName = "id")
-	private Genero id_genero;
+	private Genero genero;
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_editor", referencedColumnName = "id")
-	private Editor id_editor;
+	private Editor editor;
 	private double NA_ventas;
 	private double EU_ventas;
 	private double JP_ventas;
@@ -68,14 +69,14 @@ public class Juego {
 		if (!(obj instanceof Juego))
 			return false;
 		Juego other = (Juego) obj;
-		return Objects.equals(fecha, other.fecha) && Objects.equals(id_editor, other.id_editor)
-				&& Objects.equals(id_genero, other.id_genero) && Objects.equals(id_plataforma, other.id_plataforma)
+		return Objects.equals(fecha, other.fecha) && Objects.equals(editor, other.editor)
+				&& Objects.equals(genero, other.genero) && Objects.equals(plataforma, other.plataforma)
 				&& Objects.equals(nombre, other.nombre);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(EU_ventas, JP_ventas, NA_ventas, fecha, id, id_editor, id_genero, id_plataforma, nombre,
+		return Objects.hash(EU_ventas, JP_ventas, NA_ventas, fecha, id, editor, genero, plataforma, nombre,
 				otras_ventas, rango, ventas_globales);
 	}
 

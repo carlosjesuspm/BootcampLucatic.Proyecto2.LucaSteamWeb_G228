@@ -60,9 +60,9 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public void altaJuego(Juego juego) {
 
-		Plataforma p = juego.getId_plataforma();
-		Genero g = juego.getId_genero();
-		Editor e = juego.getId_editor();
+		Plataforma p = juego.getPlataforma();
+		Genero g = juego.getGenero();
+		Editor e = juego.getEditor();
 
 		if (!ValidacionesI.<Plataforma>existe(p, plataformasDAO.findAllByPlataforma(p.getPlataforma()))) {
 			p = plataformasDAO.save(p);
@@ -74,7 +74,7 @@ public class JuegosService implements JuegosServiceI {
 			}
 			log.info("Recuperando plataforma " + p.getPlataforma());
 		}
-		juego.setId_plataforma(p);
+		juego.setPlataforma(p);
 
 		if (!ValidacionesI.<Genero>existe(g, generosDAO.findAllByGenero(g.getGenero()))) {
 			g = generosDAO.save(g);
@@ -85,7 +85,7 @@ public class JuegosService implements JuegosServiceI {
 				g = gOpt.get();
 			log.info("Recuperando genero " + g.getGenero());
 		}
-		juego.setId_genero(g);
+		juego.setGenero(g);
 
 		if (!ValidacionesI.<Editor>existe(e, editoresDAO.findAllByEditor(e.getEditor()))) {
 			e = editoresDAO.save(e);
@@ -96,7 +96,7 @@ public class JuegosService implements JuegosServiceI {
 				e = eOpt.get();
 			log.info("Recuperando editor " + e.getEditor());
 		}
-		juego.setId_editor(e);
+		juego.setEditor(e);
 
 		if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
 			log.info("Guardando juego " + juego.getNombre());
@@ -104,6 +104,7 @@ public class JuegosService implements JuegosServiceI {
 		} else {
 			log.info("El juego " + juego.getNombre() + " ya está en la BBDD.");
 		}
+
 	}
 
 	/**
@@ -153,6 +154,22 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public Optional<Juego> findById(int id) {
 		return juegosDAO.findById(id);
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByEditor(String editor) {
+
+		Optional<Editor> e = editoresDAO.findByEditor(editor);
+		ArrayList<Juego> juegos;
+		if (e.isPresent()) {
+			juegos = juegosDAO.findAllByEditor(e.get());
+			log.info("Buscando juegos del editor " + e.get().getEditor());
+			return juegos;
+		}
+		
+		log.error("El editor no existe o ha ocurrido otro problema...");
+		return new ArrayList<>();
+		
 	}
 
 }
