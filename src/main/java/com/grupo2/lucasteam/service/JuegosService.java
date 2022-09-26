@@ -197,7 +197,7 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public ArrayList<Juego> listaJuegosSigloXX() {
 		// TODO Auto-generated method stub
-		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual());
+		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual();
 		if (juegos != null) {
 			log.info("Devolviendo lista de juegos del siglo XX");
 

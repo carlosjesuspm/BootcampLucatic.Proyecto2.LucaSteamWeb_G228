@@ -27,12 +27,12 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 
 	ArrayList<Juego> findAllByFecha(int annio);
 
-	@Query("SELECT * FROM lucasteam.juegos WHERE fecha%2 = 0")
+	@Query("FROM Juego WHERE fecha%2 = 0")
 	ArrayList<Juego> findAllFechaPar();
 
 	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
 
-	@Query("FROM juegos WHERE EU_ventas > (SELECT AVG(EU_ventas) FROM juegos)")
+	@Query("FROM Juego WHERE EU_ventas > (SELECT AVG(EU_ventas) FROM Juego)")
 	ArrayList<Juego> findAllByMediaVentasEU();
 
 }
