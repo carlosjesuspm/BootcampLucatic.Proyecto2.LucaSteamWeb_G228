@@ -180,7 +180,8 @@ public class JuegosController {
 	public String listaJuegosFecha(@RequestParam("fecha") int fecha, Model m) {
 		log.info("Obteniendo juegos del año " + fecha + " en JuegosController...");
 		m.addAttribute("listaJuegos", service.findAllByFecha(fecha));
-		return ("redirect:/");
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
 	}
 
 	/**
@@ -192,7 +193,8 @@ public class JuegosController {
 	public String listaJuegosSigloXX(Model m) {
 		log.info("Obteniendo juegos del siglo XX en JuegosController...");
 		m.addAttribute("listaJuegos", service.listaJuegosSigloXX());
-		return ("redirect:/");
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
 	}
 
 	/**
@@ -204,7 +206,8 @@ public class JuegosController {
 	public String listaJuegosAnniosPares(Model m) {
 		log.info("Obteniendo juegos de años pares en JuegosController...");
 		m.addAttribute("listaJuegos", service.listaJuegosAnniosPares());
-		return ("redirect:/");
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
 	}
 
 	/**
@@ -216,7 +219,8 @@ public class JuegosController {
 	public String listaJuegosVentasEuropa(Model m) {
 		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
 		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
-		return ("redirect:/");
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
 	}
 
 }
