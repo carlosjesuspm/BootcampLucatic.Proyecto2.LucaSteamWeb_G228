@@ -13,10 +13,19 @@
 
     <link rel="stylesheet" th:href="@{/css/altaJuego.css}" />
     
+    
+    
     <title>Alta Juegos</title>
   </head>
   <body>
-    <div class="bloque_formulario">
+  <nav class="nav">
+      <a class="nav-link active" th:href="@{/}">Home</a>
+      <a class="nav-link" th:href="@{/altaJuego}">Alta juego</a>
+      <a class="nav-link" th:href="@{/cargarCsv}">Cargar lista csv</a>
+      <a class="nav-link" th:href="@{/editor(editor='Nintendo')}">Juegos de Nintendo</a>
+    </nav>
+    <main>
+    	<div class="bloque_formulario">
       <form method="post" th:object="${juego}" th:action="@{/save}">
         <h2>Creación Juego</h2>
         <input id="id" th:field="*{id}" type="hidden" />
@@ -71,6 +80,8 @@
         </button>
       </form>
     </div>
+    </main>
+    
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
