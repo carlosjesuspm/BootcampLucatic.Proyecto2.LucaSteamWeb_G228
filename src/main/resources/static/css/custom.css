@@ -5,28 +5,6 @@ main {
 	justify-content: space-around;
 }
 
-/* nav > ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 8vh;
-  background-color: rgb(102, 160, 211);
-  border-bottom: solid 1px black;
-  list-style: none;
-} */
-
-/* a {
-  color: rgb(0, 0, 0);
-  font-size: medium;
-  text-decoration: none;
-}
-
-a:hover {
-  color: rgb(0, 0, 0);
-  font-size: medium;
-  text-decoration: none;
-  font-weight: bold;
-} */
 .b-primercontenedor {
 	margin: 3vh;
 	/* border: solid black 1px; */
@@ -52,7 +30,6 @@ a {
 	color: rgb(255, 255, 255);
 	text-decoration: bold;
 } */
-
 a:hover {
-  text-decoration: none;
+	text-decoration: none;
 }

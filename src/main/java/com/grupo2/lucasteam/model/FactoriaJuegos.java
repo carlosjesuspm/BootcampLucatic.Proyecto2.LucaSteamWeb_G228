@@ -148,7 +148,7 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 				juego.setId_editor(edit);
 			} catch (NullPointerException npe) {
 				// TODO: handle exception
-				log.warn("Genero vacío: " + npe.getMessage());
+				log.warn("Editor vacío: " + npe.getMessage());
 			}
 
 			try {
@@ -171,14 +171,6 @@ public class FactoriaJuegos implements FactoriaJuegosI {
 		}
 		return juego;
 
-	}
-
-	public JuegoFormulario formGameFromGame(Juego j) {
-		return new JuegoFormulario(String.valueOf(j.getId()), String.valueOf(j.getRango()), j.getNombre(),
-				j.getId_plataforma().getPlataforma(), String.valueOf(j.getFecha()), j.getId_genero().getGenero(),
-				j.getId_editor().getEditor(), String.valueOf(j.getNA_ventas()), String.valueOf(j.getEU_ventas()),
-				String.valueOf(j.getJP_ventas()), String.valueOf(j.getOtras_ventas()),
-				String.valueOf(j.getVentas_globales()));
 	}
 
 }

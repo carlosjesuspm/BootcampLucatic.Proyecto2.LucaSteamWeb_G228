@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.service;
 
+import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo2.lucasteam.dao.EditoresDAOI;
+import com.grupo2.lucasteam.dao.GenerosDAOI;
 import com.grupo2.lucasteam.dao.JuegosDAOI;
+import com.grupo2.lucasteam.dao.PlataformasDAOI;
+import com.grupo2.lucasteam.model.Editor;
 import com.grupo2.lucasteam.model.FactoriaJuegos;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
+import com.grupo2.lucasteam.model.Plataforma;
 import com.grupo2.lucasteam.util.FicheroI;
 import com.grupo2.lucasteam.util.ValidacionesI;
 
@@ -31,6 +38,12 @@ public class JuegosService implements JuegosServiceI {
 	@Autowired
 	JuegosDAOI juegosDAO;
 	@Autowired
+	PlataformasDAOI plataformasDAO;
+	@Autowired
+	EditoresDAOI editoresDAO;
+	@Autowired
+	GenerosDAOI generosDAO;
+	@Autowired
 	FactoriaJuegosI factoria;
 	@Autowired
 	FicheroI fichero;
@@ -48,12 +61,50 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public void altaJuego(Juego juego) {
 
-		if (!validar.existeJuego(juego)) {
+		Plataforma p = juego.getId_plataforma();
+		Genero g = juego.getId_genero();
+		Editor e = juego.getId_editor();
+
+		if (!ValidacionesI.<Plataforma>existe(p, plataformasDAO.findAllByPlataforma(p.getPlataforma()))) {
+			p = plataformasDAO.save(p);
+			log.info("Guardando plataforma " + p.getPlataforma());
+		} else {
+			Optional<Plataforma> pOpt = plataformasDAO.findByPlataforma(p.getPlataforma());
+			if (pOpt.isPresent()) {
+				p = pOpt.get();
+			}
+			log.info("Recuperando plataforma " + p.getPlataforma());
+		}
+		juego.setId_plataforma(p);
+
+		if (!ValidacionesI.<Genero>existe(g, generosDAO.findAllByGenero(g.getGenero()))) {
+			g = generosDAO.save(g);
+			log.info("Guardando genero " + g.getGenero());
+		} else {
+			Optional<Genero> gOpt = generosDAO.findByGenero(g.getGenero());
+			if (gOpt.isPresent())
+				g = gOpt.get();
+			log.info("Recuperando genero " + g.getGenero());
+		}
+		juego.setId_genero(g);
+
+		if (!ValidacionesI.<Editor>existe(e, editoresDAO.findAllByEditor(e.getEditor()))) {
+			e = editoresDAO.save(e);
+			log.info("Guardado editor " + e.getEditor());
+		} else {
+			Optional<Editor> eOpt = editoresDAO.findByEditor(e.getEditor());
+			if (eOpt.isPresent())
+				e = eOpt.get();
+			log.info("Recuperando editor " + e.getEditor());
+		}
+		juego.setId_editor(e);
+
+		if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
+			log.info("Guardando juego " + juego.getNombre());
 			juegosDAO.save(juego);
 		} else {
 			log.info("El juego " + juego.getNombre() + " ya está en la BBDD.");
 		}
-
 	}
 
 	/**
@@ -71,11 +122,10 @@ public class JuegosService implements JuegosServiceI {
 	public void importarCSV() {
 
 		while (!CSVcargado) {
-			// TODO Auto-generated method stub
-			ArrayList<Juego> juegos = fichero.importarCSV("vgsales.csv");
+			ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
 			log.info("Importando lista de juegos en BBDD...");
 			for (Juego juego : juegos) {
-				if (!validar.existeJuego(juego)) {
+				if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {
 					juegosDAO.save(juego);
 				}
 

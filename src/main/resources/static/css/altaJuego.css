@@ -1,0 +1,19 @@
+main {
+	flex-direction: column;
+	align-items: center;
+	display: flex;
+	justify-content: space-around;
+}
+
+.bloque_formulario {
+	max-width: 80%;
+	margin: 0 auto;
+}
+
+button {
+	margin-top: 4vh;
+}
+
+label {
+	margin-top: 2vh;
+}

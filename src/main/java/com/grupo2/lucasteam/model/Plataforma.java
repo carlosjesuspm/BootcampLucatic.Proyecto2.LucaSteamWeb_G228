@@ -1,5 +1,7 @@
 package com.grupo2.lucasteam.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,5 +32,22 @@ public class Plataforma {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String plataforma;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Plataforma other = (Plataforma) obj;
+		return Objects.equals(plataforma, other.plataforma);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(plataforma);
+	}
 
 }

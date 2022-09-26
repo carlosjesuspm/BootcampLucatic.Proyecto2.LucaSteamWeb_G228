@@ -1,7 +1,5 @@
 package com.grupo2.lucasteam.controller;
 
-import java.time.Year;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -13,14 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.grupo2.lucasteam.model.Editor;
-import com.grupo2.lucasteam.model.FactoriaJuegos;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
-import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
-import com.grupo2.lucasteam.model.JuegoFormulario;
-import com.grupo2.lucasteam.model.Plataforma;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
 /**
@@ -77,13 +69,12 @@ public class JuegosController {
 	public String modificarJuego(@RequestParam("id") int id, Model m) {
 		Optional<Juego> j = service.findById(id);
 		if (j.isPresent()) {
-			m.addAttribute("juego", fj.formGameFromGame(j.get()));
+			m.addAttribute("juego", j.get());
 			return "formularioAlta";
 		} else {
 			return "error";
 		}
-		
-		
+
 	}
 
 	/**
@@ -97,7 +88,6 @@ public class JuegosController {
 
 	@GetMapping("/eliminarJuego")
 	public String eliminarJuego(@RequestParam("id") int id) {
-		System.out.println("===========================Eliminar juego " + id);
 		service.deleteById(id);
 		return ("redirect:/");
 
@@ -124,7 +114,7 @@ public class JuegosController {
 	 * @return
 	 */
 	@GetMapping("/altaJuego")
-	public String newJuego(JuegoFormulario juego, Model m) {
+	public String newJuego(Juego juego, Model m) {
 		m.addAttribute("juego", juego);
 		return "formularioAlta";
 	}
@@ -136,11 +126,8 @@ public class JuegosController {
 	 * @return
 	 */
 	@PostMapping("/save")
-	public String save(JuegoFormulario j) {
-		Juego juego = fj.crearJuego(j.getRango(), j.getNombre(), j.getId_plataforma(), j.getFecha(), j.getId_genero(),
-				j.getId_editor(), j.getNA_ventas(), j.getEU_ventas(), j.getJP_ventas(), j.getOtras_ventas(), j.getVentas_globales());
-		
-		service.altaJuego(juego);
+	public String save(Juego j) {
+		service.altaJuego(j);
 		return ("redirect:/");
 	}
 

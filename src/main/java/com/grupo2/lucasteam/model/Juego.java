@@ -38,14 +38,14 @@ public class Juego {
 	private int id;
 	private int rango;
 	private String nombre;
-	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_plataforma", referencedColumnName = "id")
 	private Plataforma id_plataforma;
 	private int fecha;
-	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_genero", referencedColumnName = "id")
 	private Genero id_genero;
-	@ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_editor", referencedColumnName = "id")
 	private Editor id_editor;
 	private double NA_ventas;

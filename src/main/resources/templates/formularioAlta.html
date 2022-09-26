@@ -11,61 +11,64 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="altaJuego.css" />
-
+    <link rel="stylesheet" th:href="@{/css/altaJuego.css}" />
+    
     <title>Alta Juegos</title>
   </head>
   <body>
     <div class="bloque_formulario">
-      <section>
-        <form method="post" th:object="${juego}" th:action="@{/save}">
-          <h2>Creación Juego</h2>
-          <label for="nombre">Nombre: </label>
-          <input
-            class="form-control"
-            id="nombre"
-            type="text"
-            th:field="*{nombre}"
-            
-            placeholder="Introducir nombre juego"
-          />
-          <label for="id_plataforma">Plataforma: </label>
-          <input
-            class="form-control"
-            id="id_plataforma"
-            type="text"
-            th:field="*{id_plataforma}"            
-            placeholder="Introducir plataforma"
-          />
-          <label for="fecha">Fecha: </label>
-          <input
-            class="form-control"
-            id="fecha"
-            type="text"
-            th:field="*{fecha}"
-            placeholder="Introduzca año"
-          />
-          <label for="id_genero">Género: </label>
-          <input
-            class="form-control"
-            id="id_genero"
-            type="text"
-            th:field="*{id_genero}"
-            placeholder="Introducir género"
-          />
-          <label for="id_editor">Editor: </label>
-          <input
-            class="form-control"
-            id="id_editor"
-            type="text"
-            th:field="*{id_editor}"
-            placeholder="Introducir editor"
-          />
-          <button type="submit" class="btn btn-primary btn-lg btn-block" >
-            Guardar Juego
-          </button>
-        </form>
-      </section>
+      <form method="post" th:object="${juego}" th:action="@{/save}">
+        <h2>Creación Juego</h2>
+        <input id="id" th:field="*{id}" type="hidden" />
+        <label for="nombre">Nombre: </label>
+        <input
+          class="form-control"
+          id="nombre"
+          type="text"
+          th:field="*{nombre}"
+          minlength="1"
+          placeholder="Introducir nombre juego"
+        />
+        <label for="id_plataforma">Plataforma: </label>
+        <input
+          class="form-control"
+          id="id_plataforma"
+          type="text"
+          th:field="*{id_plataforma.plataforma}"
+          minlength="1"            
+          placeholder="Introducir plataforma"
+        />
+        <label for="fecha">Fecha: </label>
+        <input
+          class="form-control"
+          id="fecha"
+          type="number"
+          th:field="*{fecha}"
+          minlength="1"
+          placeholder="Introduzca año"
+        />
+        <label for="id_genero">Género: </label>
+        <input
+          class="form-control"
+          id="id_genero"
+          type="text"
+          th:field="*{id_genero.genero}"
+          minlength="1"
+          placeholder="Introducir género"
+        />
+        <label for="id_editor">Editor: </label>
+        <input
+          class="form-control"
+          id="id_editor"
+          type="text"
+          th:field="*{id_editor.editor}"
+          minlength="1"
+          placeholder="Introducir editor"
+        />
+        <button type="submit" class="btn btn-primary btn-lg btn-block" >
+          Guardar Juego
+        </button>
+      </form>
     </div>
 
     <script
