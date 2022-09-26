@@ -24,7 +24,9 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 
 	ArrayList<Juego> findAllByGenero(Genero genero);
 
-	ArrayList<Juego> findAllByFecha(int fecha);
+	ArrayList<Juego> findAllByFecha(int annio);
+	
+	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
 	
 	
 }
