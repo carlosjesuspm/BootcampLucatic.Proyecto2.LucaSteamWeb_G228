@@ -109,11 +109,13 @@ public class JuegosController {
 	}
 
 	/**
-	 * Metodo para dar de alta un juego
+	 * Metodo para crear un juego
 	 * 
 	 * @param juego
 	 * @param m
-	 * @return
+	 * @return {@code formularioAlta}
+	 * @author Grupo 2 - Tamara Alvarez
+	 * @since 1.0
 	 */
 	@GetMapping("/altaJuego")
 	public String newJuego(Juego juego, Model m) {
@@ -122,10 +124,12 @@ public class JuegosController {
 	}
 
 	/**
-	 * Metodo para guardar le juego creado
+	 * Metodo para guardar el juego creado
 	 * 
-	 * @param juego
-	 * @return
+	 * @param j
+	 * @return {@code redirect:/}
+	 * @author Grupo 2 - Tamara Alvarez
+	 * @since 1.0
 	 */
 	@PostMapping("/save")
 	public String save(Juego j) {
