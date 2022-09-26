@@ -21,7 +21,8 @@
 			th:href="@{/altaJuego}">Alta juego</a> <a class="nav-link"
 			th:href="@{/cargarCsv}">Cargar lista csv</a> <a class="nav-link"
 			th:href="@{/editor(editor='Nintendo')}">Juegos de Nintendo</a>
-
+			<a class="nav-link active" th:href="@{/sigloxx}">Juegos del Siglo XX</a>
+			
 		<ul class="nav nav-pills">
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
@@ -32,6 +33,8 @@
 
 				</div></li>
 		</ul>
+		  <label class="nav-link active" for="editor">Editor</label>
+            <input type="text" class="buscador"  placeholder="indique editor " /><input type="submit" class="buscador" >
 	</nav>
 	<main>
 		<div class="bloque_formulario">
