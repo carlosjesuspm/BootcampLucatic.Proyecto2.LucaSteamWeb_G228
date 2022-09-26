@@ -41,5 +41,7 @@ public interface JuegosServiceI {
 	public ArrayList<Juego> listaJuegosSigloXX();
 
 	public ArrayList<Juego> listaJuegosAnniosPares();
+	
+	public ArrayList<Juego> listaJuegosVentasEuropa();
 
 }
