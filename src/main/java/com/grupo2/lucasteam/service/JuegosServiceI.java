@@ -26,7 +26,15 @@ public interface JuegosServiceI {
 	public void deleteById(int id);
 
 	public Optional<Juego> findById(int id);
-	
+
 	public ArrayList<Juego> findAllByEditor(String editor);
+
+	public ArrayList<Juego> findAllByFecha(int fecha);
+
+	public ArrayList<Juego> findAllByGenero(String genero);
+
+	public ArrayList<Juego> listaJuegosSigloXX();
+
+	public ArrayList<Juego> listaJuegosAnniosPares();
 
 }

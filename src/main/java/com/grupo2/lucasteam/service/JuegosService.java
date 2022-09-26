@@ -166,10 +166,34 @@ public class JuegosService implements JuegosServiceI {
 			log.info("Buscando juegos del editor " + e.get().getEditor());
 			return juegos;
 		}
-		
+
 		log.error("El editor no existe o ha ocurrido otro problema...");
 		return new ArrayList<>();
-		
+
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByFecha(int fecha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByGenero(String genero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosSigloXX() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosAnniosPares() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
