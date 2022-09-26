@@ -1,6 +1,5 @@
 package com.grupo2.lucasteam.controller;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
-import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
@@ -150,11 +148,9 @@ public class JuegosController {
 	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
 		log.info("Obteniendo juegos de editor " + editor + " en JuegosController.");
 		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
-		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
-	
 	/**
 	 * Metodo para filtrar juegos por Plataforma y mostrarlos. Metodo para filtrar
 	 * juegos por Genero y mostrarlos.
