@@ -173,6 +173,30 @@ public class JuegosService implements JuegosServiceI {
 	}
 
 	@Override
+	public ArrayList<Juego> findAllByFecha(int fecha) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByGenero(String genero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosSigloXX() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosAnniosPares() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<Genero> findAllGenero() {
 		return generosDAO.findAll();
 	}
