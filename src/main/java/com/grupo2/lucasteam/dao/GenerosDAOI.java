@@ -37,4 +37,6 @@ public interface GenerosDAOI extends JpaRepository<Genero, Integer> {
 	 * @since 1.0
 	 */
 	ArrayList<Genero> findAllByGenero(String genero);
+	
+	
 }

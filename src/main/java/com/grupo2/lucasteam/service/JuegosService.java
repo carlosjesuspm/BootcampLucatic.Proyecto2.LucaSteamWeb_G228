@@ -172,4 +172,9 @@ public class JuegosService implements JuegosServiceI {
 		
 	}
 
+	@Override
+	public List<Genero> findAllGenero() {
+		return generosDAO.findAll();
+	}
+
 }
