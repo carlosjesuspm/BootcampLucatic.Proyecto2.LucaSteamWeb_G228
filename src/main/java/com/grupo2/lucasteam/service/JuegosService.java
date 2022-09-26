@@ -196,17 +196,17 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public ArrayList<Juego> listaJuegosSigloXX() {
 		// TODO Auto-generated method stub
+		ArrayList<Juego> juegos = juegosDAO.findAllByFechaBetween(1900, 2000);
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos del siglo XX");
 
-//		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual());
-//		if (juegos != null) {
-//			log.info("Devolviendo lista de juegos del siglo XX");
-//
-//		} else {
-//			log.info("No hay juegos del siglo XX.");
-//
-//		}
-//		return juegos;
-		return new ArrayList<>();
+		} else {
+			log.info("No hay juegos del siglo XX.");
+
+		}
+
+		return juegos;
+
 	}
 
 	@Override
@@ -236,6 +236,17 @@ public class JuegosService implements JuegosServiceI {
 			return juegosDAO.findAllByGenero(gen.get());
 		}
 		return new ArrayList<>();
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosVentasEuropa() {
+		ArrayList<Juego> juegos = juegosDAO.findAllByMediaVentasEU();
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos con ventas por encima de la media de Europa.");
+		} else {
+			log.info("No hay juegos con ventas por encima de la media de Europa.");
+		}
+		return juegos;
 	}
 
 }
