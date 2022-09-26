@@ -46,24 +46,35 @@
 		<div class="bloque_formulario">
 			<form method="post" th:object="${juego}" th:action="@{/save}">
 				<h2>Creación Juego</h2>
-				<input id="id" th:field="*{id}" type="hidden" /> <input id="rango"
-					th:field="*{rango}" type="hidden" /> <label for="nombre">Nombre:
-				</label> <input class="form-control" id="nombre" type="text"
-					th:field="*{nombre}" minlength="1"
-					placeholder="Introducir nombre juego" /> <label
-					for="id_plataforma">Plataforma: </label> <input
-					class="form-control" id="id_plataforma" type="text"
+				<input id="id" th:field="*{id}" type="hidden" /> 
+				<input id="rango"
+					th:field="*{rango}" type="hidden" /> 
+					
+				<label for="nombre">Nombre: </label> 
+				<input class="form-control" id="nombre" type="text"
+				th:field="*{nombre}" minlength="1"
+				placeholder="Indique el nombre" /> 
+				
+				<label for="id_plataforma">Plataforma: </label> 
+				<input class="form-control" id="id_plataforma" type="text"
 					th:field="*{plataforma.plataforma}" minlength="1"
-					placeholder="Introducir plataforma" /> <label for="fecha">Fecha:
-				</label> <input class="form-control" id="fecha" type="number"
+					placeholder="Indique la plataforma" /> 
+					
+				<label for="fecha">Año de lanzamiento: </label> 
+				<input class="form-control" id="fecha" type="number"
 					th:field="*{fecha}" minlength="1" min="1950" max="2025"
-					placeholder="Introduzca año" /> <label for="id_genero">Género:
-				</label> <input class="form-control" id="id_genero" type="text"
+					placeholder="Indique el año" /> 
+					
+				<label for="id_genero">Género: </label> 
+				<input class="form-control" id="id_genero" type="text"
 					th:field="*{genero.genero}" minlength="1"
-					placeholder="Introducir género" /> <label for="id_editor">Editor:
-				</label> <input class="form-control" id="id_editor" type="text"
+					placeholder="Indique el género" /> 
+					
+				<label for="id_editor">Editor: </label> 
+				<input class="form-control" id="id_editor" type="text"
 					th:field="*{editor.editor}" minlength="1"
-					placeholder="Introducir editor" />
+					placeholder="Indique el editor" />
+					
 				<button type="submit" class="btn btn-primary btn-lg btn-block">
 					Guardar Juego</button>
 			</form>
