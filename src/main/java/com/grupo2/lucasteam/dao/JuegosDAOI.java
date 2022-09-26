@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.grupo2.lucasteam.model.Editor;
@@ -27,6 +28,9 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 	ArrayList<Juego> findAllByFecha(int annio);
 	
 	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
+	
+	@Query("FROM juegos WHERE EU_ventas > (SELECT AVG(EU_ventas) FROM juegos)")
+	ArrayList<Juego> findAllByMediaVentasEU();
 	
 	
 }
