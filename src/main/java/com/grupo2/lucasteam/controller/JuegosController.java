@@ -145,4 +145,17 @@ public class JuegosController {
 		return ("redirect:/");
 	}
 
+	/**
+	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
+	 * 
+	 * @param @RequestParam("pltaforma") String platforma
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/genero")
+	public String listaJuegosGenero(@RequestParam("genero") String genero, Model m) {
+		log.info("Obteniendo juegos de plataforma " + genero + " en JuegosController.");
+		m.addAttribute("listaJuegos", service.findAllByGenero(genero));
+		return ("redirect:/");
+	}
+
 }
