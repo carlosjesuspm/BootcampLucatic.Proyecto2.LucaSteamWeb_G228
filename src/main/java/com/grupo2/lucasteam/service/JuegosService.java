@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.grupo2.lucasteam.dao.EditoresDAOI;
 import com.grupo2.lucasteam.dao.GenerosDAOI;
@@ -166,10 +167,74 @@ public class JuegosService implements JuegosServiceI {
 			log.info("Buscando juegos del editor " + e.get().getEditor());
 			return juegos;
 		}
-		
+
 		log.error("El editor no existe o ha ocurrido otro problema...");
 		return new ArrayList<>();
-		
+
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByFecha(int fecha) {
+		// TODO Auto-generated method stub
+		ArrayList<Juego> juegos = juegosDAO.findAllByFecha(fecha);
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos del año " + fecha);
+
+		} else {
+			log.info("No hay juegos con esa fecha.");
+
+		}
+		return juegos;
+
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByGenero(String genero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosSigloXX() {
+		// TODO Auto-generated method stub
+		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual());
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos del siglo XX");
+
+		} else {
+			log.info("No hay juegos del siglo XX.");
+
+		}
+		return juegos;
+	}
+
+	@Override
+	public ArrayList<Juego> listaJuegosAnniosPares() {
+		// TODO Auto-generated method stub
+		ArrayList<Juego> juegos = juegosDAO.findAllFechaPar();
+		if (juegos != null) {
+			log.info("Devolviendo lista de juegos del siglo XX");
+
+		} else {
+			log.info("No hay juegos del siglo XX.");
+
+		}
+		return juegos;
+
+	}
+
+	@Override
+	public List<Genero> findAllGenero() {
+		return generosDAO.findAll();
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByGenero(int idGenero) {
+		Optional<Genero> gen = generosDAO.findById(idGenero);
+		if (gen.isPresent()) {
+			return juegosDAO.findAllByGenero(gen.get());
+		}
+		return new ArrayList<>();
 	}
 
 }

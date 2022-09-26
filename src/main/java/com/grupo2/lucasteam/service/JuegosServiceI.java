@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
 
 /**
@@ -23,10 +24,22 @@ public interface JuegosServiceI {
 
 	public List<Juego> findAll();
 
+	public List<Genero> findAllGenero();
+
 	public void deleteById(int id);
 
 	public Optional<Juego> findById(int id);
-	
+
 	public ArrayList<Juego> findAllByEditor(String editor);
+
+	public ArrayList<Juego> findAllByGenero(int idGenero);
+	
+	public ArrayList<Juego> findAllByFecha(int fecha);
+
+	public ArrayList<Juego> findAllByGenero(String genero);
+
+	public ArrayList<Juego> listaJuegosSigloXX();
+
+	public ArrayList<Juego> listaJuegosAnniosPares();
 
 }

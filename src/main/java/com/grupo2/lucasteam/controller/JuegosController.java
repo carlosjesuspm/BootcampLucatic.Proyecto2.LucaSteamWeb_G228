@@ -1,5 +1,6 @@
 package com.grupo2.lucasteam.controller;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.grupo2.lucasteam.model.Editor;
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
+import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
 
@@ -55,6 +56,7 @@ public class JuegosController {
 	@GetMapping("/")
 	public String listaJuegos(Model m) {
 		m.addAttribute("listaJuegos", service.findAll());
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
@@ -120,6 +122,7 @@ public class JuegosController {
 	@GetMapping("/altaJuego")
 	public String newJuego(Juego juego, Model m) {
 		m.addAttribute("juego", juego);
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "formularioAlta";
 	}
 
@@ -138,29 +141,82 @@ public class JuegosController {
 	}
 
 	/**
-	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
+	 * Metodo para filtrar juegos por Editores y mostrarlos.
 	 * 
-	 * @param @RequestParam("pltaforma") String platforma
+	 * @param @RequestParam("editor") String editor
 	 * @return "redirect:/"
 	 */
 	@GetMapping("/editor")
 	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
 		log.info("Obteniendo juegos de editor " + editor + " en JuegosController.");
 		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
+	}
+
+	
+	/**
+	 * Metodo para filtrar juegos por Plataforma y mostrarlos. Metodo para filtrar
+	 * juegos por Genero y mostrarlos.
+	 * 
+	 * @param @RequestParam("pltaforma") String platforma
+	 * @param @RequestParam("genero")    String genero
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/genero")
+	public String listaJuegosGenero(@RequestParam("id") int idGenero, Model m) {
+		m.addAttribute("listaJuegos", service.findAllByGenero(idGenero));
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
 	/**
-	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
+	 * Metodo para filtrar juegos por Año y mostrarlos.
 	 * 
-	 * @param @RequestParam("pltaforma") String platforma
+	 * @param @RequestParam("fecha") int genero
 	 * @return "redirect:/"
-	 *//*
-		 * @GetMapping("/editor") public String
-		 * listaJuegosGenero(@RequestParam("editor") String editor, Model m) {
-		 * log.info("Obteniendo juegos de plataforma " + editor +
-		 * " en JuegosController."); m.addAttribute("listaJuegos",
-		 * service.findAllByEditor(editor)); return ("redirect:/"); }
-		 */
+	 */
+	@GetMapping("/fecha")
+	public String listaJuegosFecha(@RequestParam("fecha") int fecha, Model m) {
+		log.info("Obteniendo juegos del año " + fecha + " en JuegosController...");
+		m.addAttribute("listaJuegos", service.findAllByFecha(fecha));
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar los juegos del siglo XX y mostrarlos.
+	 * 
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/sigloxx")
+	public String listaJuegosSigloXX(Model m) {
+		log.info("Obteniendo juegos del siglo XX en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosSigloXX());
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar los juegos de años pares y mostrarlos.
+	 * 
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/anniospares")
+	public String listaJuegosAnniosPares(Model m) {
+		log.info("Obteniendo juegos de años pares en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosAnniosPares());
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar los juegos con ventas por encima de la media europea.
+	 * 
+	 * @return "redirect:/"
+	 */
+//	@GetMapping("/ventaseuropa")
+//	public String listaJuegosVentasEuropa(Model m) {
+//		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
+//		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
+//		return ("redirect:/");
+//	}
 
 }
