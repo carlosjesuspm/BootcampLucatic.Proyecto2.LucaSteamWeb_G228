@@ -122,7 +122,7 @@ public class JuegosService implements JuegosServiceI {
 	public void importarCSV() {
 
 		while (!CSVcargado) {
-			ArrayList<Juego> juegos = fichero.importarCSV("prueba.csv");
+			ArrayList<Juego> juegos = fichero.importarCSV("vgsales.csv");
 			log.info("Importando lista de juegos en BBDD...");
 			for (Juego juego : juegos) {
 				if (!ValidacionesI.<Juego>existe(juego, juegosDAO.findAllByNombre(juego.getNombre()))) {

@@ -26,7 +26,6 @@
         <table class="table table-striped">
           <tr>
             <th>Nº</th>
-            <th>Rango</th>
             <th>Nombre</th>
             <th>Plataforma</th>
             <th>Editor</th>
@@ -36,7 +35,6 @@
           </tr>
           <tr th:each="juego, status : ${listaJuegos}">
             <td th:text="${status.index + 1}" />
-            <td th:text="${juego.rango}" />
             <td th:text="${juego.nombre}" />
             <td th:text="${juego.id_plataforma.plataforma}" />
             <td th:text="${juego.id_editor.editor}"/>
