@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.grupo2.lucasteam.model.Editor;
@@ -26,7 +27,9 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 
 	ArrayList<Juego> findAllByFecha(int annio);
 	
-	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
+	ArrayList<Juego> findAllByFechaBetween(int value1, int value2);
 	
 	
-}
+	
+	
+} 

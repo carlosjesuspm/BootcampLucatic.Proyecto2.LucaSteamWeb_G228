@@ -187,7 +187,8 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public ArrayList<Juego> listaJuegosSigloXX() {
 		// TODO Auto-generated method stub
-		return null;
+		return juegosDAO.findAllByFechaBetween(1900, 2000);
+		
 	}
 
 	@Override
