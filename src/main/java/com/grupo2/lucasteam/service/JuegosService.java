@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.grupo2.lucasteam.dao.EditoresDAOI;
 import com.grupo2.lucasteam.dao.GenerosDAOI;
@@ -197,7 +196,7 @@ public class JuegosService implements JuegosServiceI {
 	@Override
 	public ArrayList<Juego> listaJuegosSigloXX() {
 		// TODO Auto-generated method stub
-		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual());
+		ArrayList<Juego> juegos = juegosDAO.findAllByFechaGreaterThanEqual();
 		if (juegos != null) {
 			log.info("Devolviendo lista de juegos del siglo XX");
 
