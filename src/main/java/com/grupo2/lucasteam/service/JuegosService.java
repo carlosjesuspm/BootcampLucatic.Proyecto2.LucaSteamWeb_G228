@@ -237,5 +237,17 @@ public class JuegosService implements JuegosServiceI {
 		}
 		return new ArrayList<>();
 	}
+	
+	
+	@Override
+	public ArrayList<Juego> listaJuegosVentasEuropa(){
+		ArrayList<Juego> juegos = juegosDAO.findAllByMediaVentasEU();
+		if(juegos != null) {
+			log.info("Devolviendo lista de juegos con ventas por encima de la media de Europa.");
+		}else {
+			log.info("No hay juegos con ventas por encima de la media de Europa.");
+		}
+		return juegos;
+	}
 
 }

@@ -212,11 +212,11 @@ public class JuegosController {
 	 * 
 	 * @return "redirect:/"
 	 */
-//	@GetMapping("/ventaseuropa")
-//	public String listaJuegosVentasEuropa(Model m) {
-//		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
-//		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
-//		return ("redirect:/");
-//	}
+	@GetMapping("/ventaseuropa")
+	public String listaJuegosVentasEuropa(Model m) {
+		log.info("Obteniendo juegos con ventas mayores que la media europea en JuegosController...");
+		m.addAttribute("listaJuegos", service.listaJuegosVentasEuropa());
+		return ("redirect:/");
+	}
 
 }
