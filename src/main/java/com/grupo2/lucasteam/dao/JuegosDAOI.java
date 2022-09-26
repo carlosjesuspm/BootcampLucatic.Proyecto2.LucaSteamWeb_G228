@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.grupo2.lucasteam.model.Editor;
@@ -17,16 +18,18 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 	Optional<Juego> findByNombre(String nombre);
 
 	ArrayList<Juego> findAllByNombre(String nombre);
-	
+
 	ArrayList<Juego> findAllByPlataforma(Plataforma plataforma);
-	
+
 	ArrayList<Juego> findAllByEditor(Editor editor);
 
 	ArrayList<Juego> findAllByGenero(Genero genero);
 
 	ArrayList<Juego> findAllByFecha(int annio);
-	
+
+	@Query("SELECT * FROM lucasteam.juegos WHERE fecha%2 = 0")
+	ArrayList<Juego> findAllFechaPar();
+
 	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
-	
-	
+
 }
