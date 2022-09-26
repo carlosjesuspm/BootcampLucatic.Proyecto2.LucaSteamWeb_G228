@@ -17,16 +17,15 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 	Optional<Juego> findByNombre(String nombre);
 
 	ArrayList<Juego> findAllByNombre(String nombre);
-	
+
 	ArrayList<Juego> findAllByPlataforma(Plataforma plataforma);
-	
+
 	ArrayList<Juego> findAllByEditor(Editor editor);
 
 	ArrayList<Juego> findAllByGenero(Genero genero);
 
 	ArrayList<Juego> findAllByFecha(int annio);
-	
+
 	ArrayList<Juego> findAllByFechaGreaterThanEqual(int annio);
-	
-	
+
 }

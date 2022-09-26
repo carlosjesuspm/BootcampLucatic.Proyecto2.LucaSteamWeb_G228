@@ -23,13 +23,15 @@ public interface JuegosServiceI {
 	public void importarCSV();
 
 	public List<Juego> findAll();
-	
+
 	public List<Genero> findAllGenero();
 
 	public void deleteById(int id);
 
 	public Optional<Juego> findById(int id);
-	
+
 	public ArrayList<Juego> findAllByEditor(String editor);
+
+	public ArrayList<Juego> findAllByGenero(int idGenero);
 
 }

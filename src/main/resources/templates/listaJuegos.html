@@ -24,7 +24,7 @@
 				role="button" aria-haspopup="true" aria-expanded="false">Genero</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" th:each="genero, status : ${listaGeneros}"
-						th:text="${genero.genero}" href="#!"></a>
+						th:text="${genero.genero}" th:href="@{/genero(id=${genero.id})}"></a>
 
 				</div></li>
 		</ul>

@@ -57,9 +57,7 @@ public class JuegosController {
 	@GetMapping("/")
 	public String listaJuegos(Model m) {
 		m.addAttribute("listaJuegos", service.findAll());
-		ArrayList<Genero> gen = (ArrayList<Genero>) service.findAllGenero();
-		System.out.println(gen);
-		m.addAttribute("listaGeneros", gen);
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
@@ -125,6 +123,7 @@ public class JuegosController {
 	@GetMapping("/altaJuego")
 	public String newJuego(Juego juego, Model m) {
 		m.addAttribute("juego", juego);
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "formularioAlta";
 	}
 
@@ -152,20 +151,15 @@ public class JuegosController {
 	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
 		log.info("Obteniendo juegos de editor " + editor + " en JuegosController.");
 		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
+		m.addAttribute("listaGeneros", service.findAllGenero());
 		return "listaJuegos";
 	}
 
-	/**
-	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
-	 * 
-	 * @param @RequestParam("pltaforma") String platforma
-	 * @return "redirect:/"
-	 *//*
-		 * @GetMapping("/editor") public String
-		 * listaJuegosGenero(@RequestParam("editor") String editor, Model m) {
-		 * log.info("Obteniendo juegos de plataforma " + editor +
-		 * " en JuegosController."); m.addAttribute("listaJuegos",
-		 * service.findAllByEditor(editor)); return ("redirect:/"); }
-		 */
+	@GetMapping("/genero")
+	public String listaJuegosGenero(@RequestParam("id") int idGenero, Model m) {
+		m.addAttribute("listaJuegos", service.findAllByGenero(idGenero));
+		m.addAttribute("listaGeneros", service.findAllGenero());
+		return "listaJuegos";
+	}
 
 }

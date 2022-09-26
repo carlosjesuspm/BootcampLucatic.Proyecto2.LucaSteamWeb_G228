@@ -166,15 +166,24 @@ public class JuegosService implements JuegosServiceI {
 			log.info("Buscando juegos del editor " + e.get().getEditor());
 			return juegos;
 		}
-		
+
 		log.error("El editor no existe o ha ocurrido otro problema...");
 		return new ArrayList<>();
-		
+
 	}
 
 	@Override
 	public List<Genero> findAllGenero() {
 		return generosDAO.findAll();
+	}
+
+	@Override
+	public ArrayList<Juego> findAllByGenero(int idGenero) {
+		Optional<Genero> gen = generosDAO.findById(idGenero);
+		if (gen.isPresent()) {
+			return juegosDAO.findAllByGenero(gen.get());
+		}
+		return new ArrayList<>();
 	}
 
 }
