@@ -205,6 +205,8 @@ public class JuegosService implements JuegosServiceI {
 //
 //		}
 		return null;
+		return juegosDAO.findAllByFechaBetween(1900, 2000);
+		
 	}
 
 	@Override

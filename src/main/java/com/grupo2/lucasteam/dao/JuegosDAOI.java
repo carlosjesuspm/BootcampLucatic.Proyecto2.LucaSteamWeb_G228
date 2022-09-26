@@ -36,3 +36,10 @@ public interface JuegosDAOI extends JpaRepository<Juego, Integer> {
 	ArrayList<Juego> findAllByMediaVentasEU();
 
 }
+	
+	ArrayList<Juego> findAllByFechaBetween(int value1, int value2);
+	
+	
+	
+	
+} 
