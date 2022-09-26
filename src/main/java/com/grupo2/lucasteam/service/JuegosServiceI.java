@@ -3,10 +3,16 @@ package com.grupo2.lucasteam.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.grupo2.lucasteam.model.Editor;
-import com.grupo2.lucasteam.model.Genero;
 import com.grupo2.lucasteam.model.Juego;
-import com.grupo2.lucasteam.model.Plataforma;
+
+/**
+ * Interfaz JuegosServiceI que se encarga de gestionar las peticiones que vienen
+ * de controller relacionadas con la clase Juego.
+ * 
+ * @author Álvaro Román Gómez
+ * @version 1.0: 22/09/2022
+ * 
+ */
 
 public interface JuegosServiceI {
 

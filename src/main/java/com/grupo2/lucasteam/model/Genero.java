@@ -32,6 +32,15 @@ public class Genero {
 	private int id;
 	private String genero;
 
+	/**
+	 * Método equals para comparar generos y definir cuándo son iguales. En este
+	 * caso serán iguales si coinciden todos sus atributos.
+	 * 
+	 * @param obj - objeto instanciado.
+	 * @return boolean
+	 * @author Álvaro Román Gómez
+	 * @since 1.0
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

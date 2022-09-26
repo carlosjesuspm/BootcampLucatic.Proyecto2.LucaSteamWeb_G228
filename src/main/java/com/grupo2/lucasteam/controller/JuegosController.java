@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.grupo2.lucasteam.model.FactoriaJuegosI;
 import com.grupo2.lucasteam.model.Juego;
 import com.grupo2.lucasteam.service.JuegosServiceI;
@@ -128,6 +129,19 @@ public class JuegosController {
 	@PostMapping("/save")
 	public String save(Juego j) {
 		service.altaJuego(j);
+		return ("redirect:/");
+	}
+
+	/**
+	 * Metodo para filtrar juegos por Plataforma y mostrarlos.
+	 * 
+	 * @param @RequestParam("pltaforma") String platforma
+	 * @return "redirect:/"
+	 */
+	@GetMapping("/plataforma")
+	public String listaJuegosPlaforma(@RequestParam("plataforma") String plataforma, Model m) {
+		log.info("Obteniendo juegos de plataforma " + plataforma + " en JuegosController.");
+		service.findAllByEditor(plataforma);
 		return ("redirect:/");
 	}
 
