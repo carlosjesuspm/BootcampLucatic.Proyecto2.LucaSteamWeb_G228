@@ -153,10 +153,10 @@ public class JuegosController {
 	 * @param @RequestParam("pltaforma") String platforma
 	 * @return "redirect:/"
 	 */
-	@GetMapping("/genero")
-	public String listaJuegosGenero(@RequestParam("genero") String genero, Model m) {
-		log.info("Obteniendo juegos de plataforma " + genero + " en JuegosController.");
-		m.addAttribute("listaJuegos", service.findAllByGenero(genero));
+	@GetMapping("/editor")
+	public String listaJuegosGenero(@RequestParam("editor") String editor, Model m) {
+		log.info("Obteniendo juegos de plataforma " + editor + " en JuegosController.");
+		m.addAttribute("listaJuegos", service.findAllByEditor(editor));
 		return ("redirect:/");
 	}
 
