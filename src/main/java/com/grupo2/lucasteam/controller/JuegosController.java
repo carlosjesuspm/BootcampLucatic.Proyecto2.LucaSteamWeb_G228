@@ -144,7 +144,7 @@ public class JuegosController {
 	 * Metodo para filtrar juegos por Editores y mostrarlos.
 	 * 
 	 * @param @RequestParam("editor") String editor
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/editor")
 	public String listaJuegosEditor(@RequestParam("editor") String editor, Model m) {
@@ -161,7 +161,7 @@ public class JuegosController {
 	 * 
 	 * @param @RequestParam("pltaforma") String platforma
 	 * @param @RequestParam("genero")    String genero
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/genero")
 	public String listaJuegosGenero(@RequestParam("id") int idGenero, Model m) {
@@ -174,7 +174,7 @@ public class JuegosController {
 	 * Metodo para filtrar juegos por Año y mostrarlos.
 	 * 
 	 * @param @RequestParam("fecha") int genero
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/fecha")
 	public String listaJuegosFecha(@RequestParam("fecha") int fecha, Model m) {
@@ -187,7 +187,7 @@ public class JuegosController {
 	/**
 	 * Metodo para filtrar los juegos del siglo XX y mostrarlos.
 	 * 
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/sigloxx")
 	public String listaJuegosSigloXX(Model m) {
@@ -200,7 +200,7 @@ public class JuegosController {
 	/**
 	 * Metodo para filtrar los juegos de años pares y mostrarlos.
 	 * 
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/anniospares")
 	public String listaJuegosAnniosPares(Model m) {
@@ -213,7 +213,7 @@ public class JuegosController {
 	/**
 	 * Metodo para filtrar los juegos con ventas por encima de la media europea.
 	 * 
-	 * @return "redirect:/"
+	 * @return "listaJuegos"
 	 */
 	@GetMapping("/ventaseuropa")
 	public String listaJuegosVentasEuropa(Model m) {
